@@ -1,0 +1,623 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		33564C9216DF17780025D8D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33564C9116DF17780025D8D8 /* UIKit.framework */; };
+		33564C9416DF17780025D8D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33564C9316DF17780025D8D8 /* Foundation.framework */; };
+		33564C9616DF17790025D8D8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33564C9516DF17780025D8D8 /* CoreGraphics.framework */; };
+		33564C9C16DF17790025D8D8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33564C9A16DF17790025D8D8 /* InfoPlist.strings */; };
+		33564C9E16DF17790025D8D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564C9D16DF17790025D8D8 /* main.m */; };
+		33564CA216DF17790025D8D8 /* POSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564CA116DF17790025D8D8 /* POSAppDelegate.m */; };
+		33564CA416DF17790025D8D8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564CA316DF17790025D8D8 /* Default.png */; };
+		33564CA616DF17790025D8D8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564CA516DF17790025D8D8 /* Default@2x.png */; };
+		33564CA816DF17790025D8D8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564CA716DF17790025D8D8 /* Default-568h@2x.png */; };
+		33564CAB16DF17790025D8D8 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33564CA916DF17790025D8D8 /* MainStoryboard_iPhone.storyboard */; };
+		33564CAE16DF17790025D8D8 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33564CAC16DF17790025D8D8 /* MainStoryboard_iPad.storyboard */; };
+		33564CB116DF17790025D8D8 /* POSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564CB016DF17790025D8D8 /* POSViewController.m */; };
+		33564CB916DF17790025D8D8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33564CB816DF17790025D8D8 /* SenTestingKit.framework */; };
+		33564CBA16DF17790025D8D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33564C9116DF17780025D8D8 /* UIKit.framework */; };
+		33564CBB16DF17790025D8D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33564C9316DF17780025D8D8 /* Foundation.framework */; };
+		33564CC316DF17790025D8D8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33564CC116DF17790025D8D8 /* InfoPlist.strings */; };
+		33564CC616DF17790025D8D8 /* POSsystemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564CC516DF17790025D8D8 /* POSsystemTests.m */; };
+		33564CD516DF18260025D8D8 /* POSCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564CD416DF18260025D8D8 /* POSCategoryViewController.m */; };
+		33564CD816DF184D0025D8D8 /* POSSubCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564CD716DF184D0025D8D8 /* POSSubCategoryViewController.m */; };
+		33564CDC16DF18710025D8D8 /* POSProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564CDB16DF18710025D8D8 /* POSProductViewController.m */; };
+		33564CE016DF18880025D8D8 /* POSProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564CDF16DF18880025D8D8 /* POSProductDetailViewController.m */; };
+		33564CE416DF1F390025D8D8 /* POSCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564CE316DF1F390025D8D8 /* POSCollectionViewCell.m */; };
+		33564CF016DF299B0025D8D8 /* sofa2.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564CEE16DF299B0025D8D8 /* sofa2.png */; };
+		33564CF116DF299B0025D8D8 /* sofa1.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564CEF16DF299B0025D8D8 /* sofa1.png */; };
+		33564CFC16DF35250025D8D8 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33564CFA16DF35250025D8D8 /* Lato-Bold.ttf */; };
+		33564CFD16DF35250025D8D8 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33564CFB16DF35250025D8D8 /* Lato-Regular.ttf */; };
+		33564D0016DF44300025D8D8 /* POSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564CFF16DF44300025D8D8 /* POSNavigationBar.m */; };
+		33564D0916DF81FD0025D8D8 /* POSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564D0816DF81FD0025D8D8 /* POSTableViewCell.m */; };
+		33564D0B16DFA5B70025D8D8 /* cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564D0A16DFA5B70025D8D8 /* cart.png */; };
+		33564D0F16DFA9620025D8D8 /* navBarButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564D0E16DFA9620025D8D8 /* navBarButton.png */; };
+		33564D1116DFACB20025D8D8 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564D1016DFACB20025D8D8 /* user.png */; };
+		33564D1316DFAFC80025D8D8 /* scanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564D1216DFAFC80025D8D8 /* scanner.png */; };
+		33564D1516DFB1C30025D8D8 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564D1416DFB1C30025D8D8 /* button.png */; };
+		33564D1716DFE3080025D8D8 /* navBarButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564D1616DFE3080025D8D8 /* navBarButtonSelected.png */; };
+		33564D1A16DFEFFA0025D8D8 /* POSGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564D1916DFEFFA0025D8D8 /* POSGalleryViewController.m */; };
+		33564D1E16E0FB5B0025D8D8 /* POSAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564D1D16E0FB5B0025D8D8 /* POSAnimations.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		33564CBC16DF17790025D8D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33564C8616DF17780025D8D8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33564C8D16DF17780025D8D8;
+			remoteInfo = POSsystem;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		33564C8E16DF17780025D8D8 /* POSsystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POSsystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		33564C9116DF17780025D8D8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		33564C9316DF17780025D8D8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		33564C9516DF17780025D8D8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		33564C9916DF17790025D8D8 /* POSsystem-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "POSsystem-Info.plist"; sourceTree = "<group>"; };
+		33564C9B16DF17790025D8D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		33564C9D16DF17790025D8D8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		33564C9F16DF17790025D8D8 /* POSsystem-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "POSsystem-Prefix.pch"; sourceTree = "<group>"; };
+		33564CA016DF17790025D8D8 /* POSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POSAppDelegate.h; sourceTree = "<group>"; };
+		33564CA116DF17790025D8D8 /* POSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POSAppDelegate.m; sourceTree = "<group>"; };
+		33564CA316DF17790025D8D8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		33564CA516DF17790025D8D8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		33564CA716DF17790025D8D8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		33564CAA16DF17790025D8D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		33564CAD16DF17790025D8D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		33564CAF16DF17790025D8D8 /* POSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POSViewController.h; sourceTree = "<group>"; };
+		33564CB016DF17790025D8D8 /* POSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POSViewController.m; sourceTree = "<group>"; };
+		33564CB716DF17790025D8D8 /* POSsystemTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = POSsystemTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		33564CB816DF17790025D8D8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		33564CC016DF17790025D8D8 /* POSsystemTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "POSsystemTests-Info.plist"; sourceTree = "<group>"; };
+		33564CC216DF17790025D8D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		33564CC416DF17790025D8D8 /* POSsystemTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POSsystemTests.h; sourceTree = "<group>"; };
+		33564CC516DF17790025D8D8 /* POSsystemTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = POSsystemTests.m; sourceTree = "<group>"; };
+		33564CD116DF17B20025D8D8 /* POSCoordinatorDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POSCoordinatorDelegate.h; sourceTree = "<group>"; };
+		33564CD316DF18260025D8D8 /* POSCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSCategoryViewController.h; sourceTree = "<group>"; };
+		33564CD416DF18260025D8D8 /* POSCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSCategoryViewController.m; sourceTree = "<group>"; };
+		33564CD616DF184D0025D8D8 /* POSSubCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSSubCategoryViewController.h; sourceTree = "<group>"; };
+		33564CD716DF184D0025D8D8 /* POSSubCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSSubCategoryViewController.m; sourceTree = "<group>"; };
+		33564CDA16DF18710025D8D8 /* POSProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSProductViewController.h; sourceTree = "<group>"; };
+		33564CDB16DF18710025D8D8 /* POSProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSProductViewController.m; sourceTree = "<group>"; };
+		33564CDE16DF18880025D8D8 /* POSProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSProductDetailViewController.h; sourceTree = "<group>"; };
+		33564CDF16DF18880025D8D8 /* POSProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSProductDetailViewController.m; sourceTree = "<group>"; };
+		33564CE116DF1B8F0025D8D8 /* POSConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POSConstants.h; sourceTree = "<group>"; };
+		33564CE216DF1F390025D8D8 /* POSCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSCollectionViewCell.h; sourceTree = "<group>"; };
+		33564CE316DF1F390025D8D8 /* POSCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSCollectionViewCell.m; sourceTree = "<group>"; };
+		33564CEE16DF299B0025D8D8 /* sofa2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sofa2.png; sourceTree = "<group>"; };
+		33564CEF16DF299B0025D8D8 /* sofa1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sofa1.png; sourceTree = "<group>"; };
+		33564CFA16DF35250025D8D8 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		33564CFB16DF35250025D8D8 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		33564CFE16DF44300025D8D8 /* POSNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNavigationBar.h; sourceTree = "<group>"; };
+		33564CFF16DF44300025D8D8 /* POSNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNavigationBar.m; sourceTree = "<group>"; };
+		33564D0716DF81FD0025D8D8 /* POSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSTableViewCell.h; sourceTree = "<group>"; };
+		33564D0816DF81FD0025D8D8 /* POSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSTableViewCell.m; sourceTree = "<group>"; };
+		33564D0A16DFA5B70025D8D8 /* cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cart.png; sourceTree = "<group>"; };
+		33564D0E16DFA9620025D8D8 /* navBarButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBarButton.png; sourceTree = "<group>"; };
+		33564D1016DFACB20025D8D8 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		33564D1216DFAFC80025D8D8 /* scanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanner.png; sourceTree = "<group>"; };
+		33564D1416DFB1C30025D8D8 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
+		33564D1616DFE3080025D8D8 /* navBarButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBarButtonSelected.png; sourceTree = "<group>"; };
+		33564D1816DFEFFA0025D8D8 /* POSGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSGalleryViewController.h; sourceTree = "<group>"; };
+		33564D1916DFEFFA0025D8D8 /* POSGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSGalleryViewController.m; sourceTree = "<group>"; };
+		33564D1C16E0FB5B0025D8D8 /* POSAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAnimations.h; sourceTree = "<group>"; };
+		33564D1D16E0FB5B0025D8D8 /* POSAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAnimations.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		33564C8B16DF17780025D8D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33564C9216DF17780025D8D8 /* UIKit.framework in Frameworks */,
+				33564C9416DF17780025D8D8 /* Foundation.framework in Frameworks */,
+				33564C9616DF17790025D8D8 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33564CB316DF17790025D8D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33564CB916DF17790025D8D8 /* SenTestingKit.framework in Frameworks */,
+				33564CBA16DF17790025D8D8 /* UIKit.framework in Frameworks */,
+				33564CBB16DF17790025D8D8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		33564C8516DF17780025D8D8 = {
+			isa = PBXGroup;
+			children = (
+				33564C9716DF17790025D8D8 /* POSsystem */,
+				33564CBE16DF17790025D8D8 /* POSsystemTests */,
+				33564C9016DF17780025D8D8 /* Frameworks */,
+				33564C8F16DF17780025D8D8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		33564C8F16DF17780025D8D8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				33564C8E16DF17780025D8D8 /* POSsystem.app */,
+				33564CB716DF17790025D8D8 /* POSsystemTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		33564C9016DF17780025D8D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33564C9116DF17780025D8D8 /* UIKit.framework */,
+				33564C9316DF17780025D8D8 /* Foundation.framework */,
+				33564C9516DF17780025D8D8 /* CoreGraphics.framework */,
+				33564CB816DF17790025D8D8 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		33564C9716DF17790025D8D8 /* POSsystem */ = {
+			isa = PBXGroup;
+			children = (
+				33564CE116DF1B8F0025D8D8 /* POSConstants.h */,
+				33564D1B16E0FB3B0025D8D8 /* Animations */,
+				33564CE516DF25920025D8D8 /* Assets */,
+				33564CD216DF17F00025D8D8 /* Views */,
+				33564CD016DF17910025D8D8 /* Delegates */,
+				33564CCF16DF17890025D8D8 /* Controllers */,
+				33564CA916DF17790025D8D8 /* MainStoryboard_iPhone.storyboard */,
+				33564CAC16DF17790025D8D8 /* MainStoryboard_iPad.storyboard */,
+				33564C9816DF17790025D8D8 /* Supporting Files */,
+			);
+			path = POSsystem;
+			sourceTree = "<group>";
+		};
+		33564C9816DF17790025D8D8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				33564C9916DF17790025D8D8 /* POSsystem-Info.plist */,
+				33564C9A16DF17790025D8D8 /* InfoPlist.strings */,
+				33564C9D16DF17790025D8D8 /* main.m */,
+				33564C9F16DF17790025D8D8 /* POSsystem-Prefix.pch */,
+				33564CA316DF17790025D8D8 /* Default.png */,
+				33564CA516DF17790025D8D8 /* Default@2x.png */,
+				33564CA716DF17790025D8D8 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		33564CBE16DF17790025D8D8 /* POSsystemTests */ = {
+			isa = PBXGroup;
+			children = (
+				33564CC416DF17790025D8D8 /* POSsystemTests.h */,
+				33564CC516DF17790025D8D8 /* POSsystemTests.m */,
+				33564CBF16DF17790025D8D8 /* Supporting Files */,
+			);
+			path = POSsystemTests;
+			sourceTree = "<group>";
+		};
+		33564CBF16DF17790025D8D8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				33564CC016DF17790025D8D8 /* POSsystemTests-Info.plist */,
+				33564CC116DF17790025D8D8 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		33564CCF16DF17890025D8D8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				33564CAF16DF17790025D8D8 /* POSViewController.h */,
+				33564CB016DF17790025D8D8 /* POSViewController.m */,
+				33564CD316DF18260025D8D8 /* POSCategoryViewController.h */,
+				33564CD416DF18260025D8D8 /* POSCategoryViewController.m */,
+				33564CD616DF184D0025D8D8 /* POSSubCategoryViewController.h */,
+				33564CD716DF184D0025D8D8 /* POSSubCategoryViewController.m */,
+				33564CDA16DF18710025D8D8 /* POSProductViewController.h */,
+				33564CDB16DF18710025D8D8 /* POSProductViewController.m */,
+				33564CDE16DF18880025D8D8 /* POSProductDetailViewController.h */,
+				33564CDF16DF18880025D8D8 /* POSProductDetailViewController.m */,
+				33564D1816DFEFFA0025D8D8 /* POSGalleryViewController.h */,
+				33564D1916DFEFFA0025D8D8 /* POSGalleryViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		33564CD016DF17910025D8D8 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				33564CA016DF17790025D8D8 /* POSAppDelegate.h */,
+				33564CA116DF17790025D8D8 /* POSAppDelegate.m */,
+				33564CD116DF17B20025D8D8 /* POSCoordinatorDelegate.h */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		33564CD216DF17F00025D8D8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				33564CE216DF1F390025D8D8 /* POSCollectionViewCell.h */,
+				33564CE316DF1F390025D8D8 /* POSCollectionViewCell.m */,
+				33564D0716DF81FD0025D8D8 /* POSTableViewCell.h */,
+				33564D0816DF81FD0025D8D8 /* POSTableViewCell.m */,
+				33564CFE16DF44300025D8D8 /* POSNavigationBar.h */,
+				33564CFF16DF44300025D8D8 /* POSNavigationBar.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		33564CE516DF25920025D8D8 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				33564CFA16DF35250025D8D8 /* Lato-Bold.ttf */,
+				33564CFB16DF35250025D8D8 /* Lato-Regular.ttf */,
+				33564CEE16DF299B0025D8D8 /* sofa2.png */,
+				33564CEF16DF299B0025D8D8 /* sofa1.png */,
+				33564D1416DFB1C30025D8D8 /* button.png */,
+				33564D0A16DFA5B70025D8D8 /* cart.png */,
+				33564D1016DFACB20025D8D8 /* user.png */,
+				33564D1216DFAFC80025D8D8 /* scanner.png */,
+				33564D0E16DFA9620025D8D8 /* navBarButton.png */,
+				33564D1616DFE3080025D8D8 /* navBarButtonSelected.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		33564D1B16E0FB3B0025D8D8 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				33564D1C16E0FB5B0025D8D8 /* POSAnimations.h */,
+				33564D1D16E0FB5B0025D8D8 /* POSAnimations.m */,
+			);
+			name = Animations;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		33564C8D16DF17780025D8D8 /* POSsystem */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33564CC916DF17790025D8D8 /* Build configuration list for PBXNativeTarget "POSsystem" */;
+			buildPhases = (
+				33564C8A16DF17780025D8D8 /* Sources */,
+				33564C8B16DF17780025D8D8 /* Frameworks */,
+				33564C8C16DF17780025D8D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = POSsystem;
+			productName = POSsystem;
+			productReference = 33564C8E16DF17780025D8D8 /* POSsystem.app */;
+			productType = "com.apple.product-type.application";
+		};
+		33564CB616DF17790025D8D8 /* POSsystemTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33564CCC16DF17790025D8D8 /* Build configuration list for PBXNativeTarget "POSsystemTests" */;
+			buildPhases = (
+				33564CB216DF17790025D8D8 /* Sources */,
+				33564CB316DF17790025D8D8 /* Frameworks */,
+				33564CB416DF17790025D8D8 /* Resources */,
+				33564CB516DF17790025D8D8 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				33564CBD16DF17790025D8D8 /* PBXTargetDependency */,
+			);
+			name = POSsystemTests;
+			productName = POSsystemTests;
+			productReference = 33564CB716DF17790025D8D8 /* POSsystemTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		33564C8616DF17780025D8D8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = POS;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = POS;
+			};
+			buildConfigurationList = 33564C8916DF17780025D8D8 /* Build configuration list for PBXProject "POSsystem" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 33564C8516DF17780025D8D8;
+			productRefGroup = 33564C8F16DF17780025D8D8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				33564C8D16DF17780025D8D8 /* POSsystem */,
+				33564CB616DF17790025D8D8 /* POSsystemTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		33564C8C16DF17780025D8D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33564C9C16DF17790025D8D8 /* InfoPlist.strings in Resources */,
+				33564CA416DF17790025D8D8 /* Default.png in Resources */,
+				33564CA616DF17790025D8D8 /* Default@2x.png in Resources */,
+				33564CA816DF17790025D8D8 /* Default-568h@2x.png in Resources */,
+				33564CAB16DF17790025D8D8 /* MainStoryboard_iPhone.storyboard in Resources */,
+				33564CAE16DF17790025D8D8 /* MainStoryboard_iPad.storyboard in Resources */,
+				33564CF016DF299B0025D8D8 /* sofa2.png in Resources */,
+				33564CF116DF299B0025D8D8 /* sofa1.png in Resources */,
+				33564CFC16DF35250025D8D8 /* Lato-Bold.ttf in Resources */,
+				33564CFD16DF35250025D8D8 /* Lato-Regular.ttf in Resources */,
+				33564D0B16DFA5B70025D8D8 /* cart.png in Resources */,
+				33564D0F16DFA9620025D8D8 /* navBarButton.png in Resources */,
+				33564D1116DFACB20025D8D8 /* user.png in Resources */,
+				33564D1316DFAFC80025D8D8 /* scanner.png in Resources */,
+				33564D1516DFB1C30025D8D8 /* button.png in Resources */,
+				33564D1716DFE3080025D8D8 /* navBarButtonSelected.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33564CB416DF17790025D8D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33564CC316DF17790025D8D8 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		33564CB516DF17790025D8D8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		33564C8A16DF17780025D8D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33564C9E16DF17790025D8D8 /* main.m in Sources */,
+				33564CA216DF17790025D8D8 /* POSAppDelegate.m in Sources */,
+				33564CB116DF17790025D8D8 /* POSViewController.m in Sources */,
+				33564CD516DF18260025D8D8 /* POSCategoryViewController.m in Sources */,
+				33564CD816DF184D0025D8D8 /* POSSubCategoryViewController.m in Sources */,
+				33564CDC16DF18710025D8D8 /* POSProductViewController.m in Sources */,
+				33564CE016DF18880025D8D8 /* POSProductDetailViewController.m in Sources */,
+				33564CE416DF1F390025D8D8 /* POSCollectionViewCell.m in Sources */,
+				33564D0016DF44300025D8D8 /* POSNavigationBar.m in Sources */,
+				33564D0916DF81FD0025D8D8 /* POSTableViewCell.m in Sources */,
+				33564D1A16DFEFFA0025D8D8 /* POSGalleryViewController.m in Sources */,
+				33564D1E16E0FB5B0025D8D8 /* POSAnimations.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33564CB216DF17790025D8D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33564CC616DF17790025D8D8 /* POSsystemTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		33564CBD16DF17790025D8D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33564C8D16DF17780025D8D8 /* POSsystem */;
+			targetProxy = 33564CBC16DF17790025D8D8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		33564C9A16DF17790025D8D8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33564C9B16DF17790025D8D8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		33564CA916DF17790025D8D8 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33564CAA16DF17790025D8D8 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		33564CAC16DF17790025D8D8 /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33564CAD16DF17790025D8D8 /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		33564CC116DF17790025D8D8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33564CC216DF17790025D8D8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		33564CC716DF17790025D8D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		33564CC816DF17790025D8D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		33564CCA16DF17790025D8D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "POSsystem/POSsystem-Prefix.pch";
+				INFOPLIST_FILE = "POSsystem/POSsystem-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		33564CCB16DF17790025D8D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "POSsystem/POSsystem-Prefix.pch";
+				INFOPLIST_FILE = "POSsystem/POSsystem-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		33564CCD16DF17790025D8D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/POSsystem.app/POSsystem";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "POSsystem/POSsystem-Prefix.pch";
+				INFOPLIST_FILE = "POSsystemTests/POSsystemTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		33564CCE16DF17790025D8D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/POSsystem.app/POSsystem";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "POSsystem/POSsystem-Prefix.pch";
+				INFOPLIST_FILE = "POSsystemTests/POSsystemTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		33564C8916DF17780025D8D8 /* Build configuration list for PBXProject "POSsystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33564CC716DF17790025D8D8 /* Debug */,
+				33564CC816DF17790025D8D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33564CC916DF17790025D8D8 /* Build configuration list for PBXNativeTarget "POSsystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33564CCA16DF17790025D8D8 /* Debug */,
+				33564CCB16DF17790025D8D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33564CCC16DF17790025D8D8 /* Build configuration list for PBXNativeTarget "POSsystemTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33564CCD16DF17790025D8D8 /* Debug */,
+				33564CCE16DF17790025D8D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 33564C8616DF17780025D8D8 /* Project object */;
+}

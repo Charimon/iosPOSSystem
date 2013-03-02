@@ -162,7 +162,7 @@
     [self addSubview:button];
     
     ADD_CONSTRAINT(self, button, NSLayoutAttributeTop, NSLayoutRelationEqual, self, NSLayoutAttributeTop, 1.f, 0);
-    ADD_CONSTRAINT(self, button, NSLayoutAttributeBottom, NSLayoutRelationEqual, self, NSgLayoutAttributeBottom, 1.f, 0);
+    ADD_CONSTRAINT(self, button, NSLayoutAttributeBottom, NSLayoutRelationEqual, self, NSLayoutAttributeBottom, 1.f, 0);
     if(self.buttonStack.count == 0){
         ADD_CONSTRAINT(self, button, NSLayoutAttributeLeading, NSLayoutRelationEqual, self, NSLayoutAttributeLeading, 1.f, 0);
     } else {

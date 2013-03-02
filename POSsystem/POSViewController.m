@@ -26,6 +26,9 @@
 @property (nonatomic, strong) UIPanGestureRecognizer* panGestureRecognizer;
 @property (nonatomic, strong) UIViewController* panSlidingViewController;
 
+//type: NSMutableDictionary[NSString, block^]
+@property (nonatomic, strong) NSMutableDictionary* nilifyDictionary;
+
 -(void) setupCategoryViewController;
 -(void) setupSubCategoryViewController;
 -(void) setupProductViewController;
@@ -40,6 +43,12 @@
 @implementation POSViewController
 
 #pragma mark - setters/getters
+-(NSMutableDictionary *) nilifyDictionary {
+    if(_nilifyDictionary) return _nilifyDictionary;
+    _nilifyDictionary = [[NSMutableDictionary alloc] init];
+    return _nilifyDictionary;
+}
+
 -(POSNavigationBar *) navigationBar{
     if(_navigationBar) return _navigationBar;
     _navigationBar = [[POSNavigationBar alloc] initWithDefaultTitle:self.categoryViewController.title];
@@ -68,18 +77,22 @@
         self.categoryViewController = (POSCategoryViewController *)controller;
         self.categoryViewController.coordinatorDelegate = self;
         self.categoryViewController.title = @"Categories";
+        [self.nilifyDictionary setObject:@"categoryViewController" forKey:NSStringFromClass([POSCategoryViewController class])];
     } else if([controller isKindOfClass:[POSSubCategoryViewController class]]) {
         self.subCategoryViewController = (POSSubCategoryViewController *)controller;
         self.subCategoryViewController.coordinatorDelegate = self;
         self.subCategoryViewController.title = @"Sub Categories";
+        [self.nilifyDictionary setObject:@"subCategoryViewController" forKey:NSStringFromClass([POSSubCategoryViewController class])];
     } else if ([controller isKindOfClass:[POSProductViewController class]]) {
         self.productViewController = (POSProductViewController *)controller;
         self.productViewController.coordinatorDelegate = self;
         self.productViewController.title = @"Products";
+        [self.nilifyDictionary setObject:@"productViewController" forKey:NSStringFromClass([POSProductViewController class])];
     } else if ([controller isKindOfClass:[POSProductDetailViewController class]]) {
         self.productDetailViewController = (POSProductDetailViewController *)controller;
         self.productDetailViewController.coordinatorDelegate = self;
         self.productDetailViewController.title = @"Product Detail";
+        [self.nilifyDictionary setObject:@"productDetailViewController" forKey:NSStringFromClass([POSProductDetailViewController class])];
     }
     return controller;
 }
@@ -91,6 +104,7 @@
     [self addChildViewController:self.categoryViewController];
     [self.view addSubview:self.categoryViewController.view];
     
+    [self.nilifyDictionary setObject:@"categoryViewController" forKey:NSStringFromClass([POSCategoryViewController class])];
     self.categoryViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
 }
 -(void) setupSubCategoryViewController {
@@ -100,6 +114,7 @@
     [self addChildViewController:self.subCategoryViewController];
     [self.view addSubview:self.subCategoryViewController.view];
     
+    [self.nilifyDictionary setObject:@"subCategoryViewController" forKey:NSStringFromClass([POSSubCategoryViewController class])];
     self.subCategoryViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
 }
 -(void) setupProductViewController {
@@ -109,6 +124,7 @@
     [self addChildViewController:self.productViewController];
     [self.view addSubview:self.productViewController.view];
     
+    [self.nilifyDictionary setObject:@"productViewController" forKey:NSStringFromClass([POSProductViewController class])];
     self.productViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
 }
 -(void) setupProductDetailViewController {
@@ -118,6 +134,7 @@
     [self addChildViewController:self.productDetailViewController];
     [self.view addSubview:self.productDetailViewController.view];
     
+    [self.nilifyDictionary setObject:@"productDetailViewController" forKey:NSStringFromClass([POSProductDetailViewController class])];
     self.productDetailViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
@@ -125,6 +142,11 @@
 -(void) nilifyViewController: (UIViewController *) viewController {
     [viewController removeFromParentViewController];
     [viewController.view removeFromSuperview];
+    
+    //sets the property to nil
+    //don't know if this will actually call arc's dealloc
+    if(viewController)
+        [self setValue:nil forKey:[self.nilifyDictionary objectForKey:NSStringFromClass([viewController class])]];
 }
 
 #pragma mark - view methods

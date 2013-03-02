@@ -39,7 +39,7 @@
 		33564D0F16DFA9620025D8D8 /* navBarButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564D0E16DFA9620025D8D8 /* navBarButton.png */; };
 		33564D1116DFACB20025D8D8 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564D1016DFACB20025D8D8 /* user.png */; };
 		33564D1316DFAFC80025D8D8 /* scanner.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564D1216DFAFC80025D8D8 /* scanner.png */; };
-		33564D1516DFB1C30025D8D8 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564D1416DFB1C30025D8D8 /* button.png */; };
+		33564D1516DFB1C30025D8D8 /* navBarChevron.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564D1416DFB1C30025D8D8 /* navBarChevron.png */; };
 		33564D1716DFE3080025D8D8 /* navBarButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564D1616DFE3080025D8D8 /* navBarButtonSelected.png */; };
 		33564D1A16DFEFFA0025D8D8 /* POSGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564D1916DFEFFA0025D8D8 /* POSGalleryViewController.m */; };
 		33564D1E16E0FB5B0025D8D8 /* POSAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564D1D16E0FB5B0025D8D8 /* POSAnimations.m */; };
@@ -103,7 +103,7 @@
 		33564D0E16DFA9620025D8D8 /* navBarButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBarButton.png; sourceTree = "<group>"; };
 		33564D1016DFACB20025D8D8 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		33564D1216DFAFC80025D8D8 /* scanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanner.png; sourceTree = "<group>"; };
-		33564D1416DFB1C30025D8D8 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
+		33564D1416DFB1C30025D8D8 /* navBarChevron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBarChevron.png; sourceTree = "<group>"; };
 		33564D1616DFE3080025D8D8 /* navBarButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navBarButtonSelected.png; sourceTree = "<group>"; };
 		33564D1816DFEFFA0025D8D8 /* POSGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSGalleryViewController.h; sourceTree = "<group>"; };
 		33564D1916DFEFFA0025D8D8 /* POSGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSGalleryViewController.m; sourceTree = "<group>"; };
@@ -263,7 +263,7 @@
 				33564CFB16DF35250025D8D8 /* Lato-Regular.ttf */,
 				33564CEE16DF299B0025D8D8 /* sofa2.png */,
 				33564CEF16DF299B0025D8D8 /* sofa1.png */,
-				33564D1416DFB1C30025D8D8 /* button.png */,
+				33564D1416DFB1C30025D8D8 /* navBarChevron.png */,
 				33564D0A16DFA5B70025D8D8 /* cart.png */,
 				33564D1016DFACB20025D8D8 /* user.png */,
 				33564D1216DFAFC80025D8D8 /* scanner.png */,
@@ -368,7 +368,7 @@
 				33564D0F16DFA9620025D8D8 /* navBarButton.png in Resources */,
 				33564D1116DFACB20025D8D8 /* user.png in Resources */,
 				33564D1316DFAFC80025D8D8 /* scanner.png in Resources */,
-				33564D1516DFB1C30025D8D8 /* button.png in Resources */,
+				33564D1516DFB1C30025D8D8 /* navBarChevron.png in Resources */,
 				33564D1716DFE3080025D8D8 /* navBarButtonSelected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

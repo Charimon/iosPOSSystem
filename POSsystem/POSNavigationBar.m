@@ -155,14 +155,14 @@
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     button.titleLabel.font = [UIFont fontWithName:@"Lato-Bold" size:22.f];
     button.translatesAutoresizingMaskIntoConstraints = NO;
-    [button setBackgroundImage:[[UIImage imageNamed:@"button"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.f, 0.f, 50.f, 20.f)] forState:UIControlStateNormal];
+    [button setBackgroundImage:[[UIImage imageNamed:@"navBarChevron"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.f, 0.f, 50.f, 20.f)] forState:UIControlStateNormal];
     button.contentEdgeInsets= UIEdgeInsetsMake(0, 8.f, 0, 12.f);
     [button addTarget:self.delegate action:@selector(navigationBarPopViewController:) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:button];
     
     ADD_CONSTRAINT(self, button, NSLayoutAttributeTop, NSLayoutRelationEqual, self, NSLayoutAttributeTop, 1.f, 0);
-    ADD_CONSTRAINT(self, button, NSLayoutAttributeBottom, NSLayoutRelationEqual, self, NSLayoutAttributeBottom, 1.f, 0);
+    ADD_CONSTRAINT(self, button, NSLayoutAttributeBottom, NSLayoutRelationEqual, self, NSgLayoutAttributeBottom, 1.f, 0);
     if(self.buttonStack.count == 0){
         ADD_CONSTRAINT(self, button, NSLayoutAttributeLeading, NSLayoutRelationEqual, self, NSLayoutAttributeLeading, 1.f, 0);
     } else {

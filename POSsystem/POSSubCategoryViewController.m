@@ -44,10 +44,10 @@
     [super viewWillAppear:animated];
     [self.view addSubview:self.collectionView];
     
-    ADD_CONSTRAINT(self.view, self.collectionView, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.view, NSLayoutAttributeLeading, 1.f, 14.f);
-    ADD_CONSTRAINT(self.view, self.collectionView, NSLayoutAttributeTop, NSLayoutRelationEqual, self.view, NSLayoutAttributeTop, 1.f, 14);
-    ADD_CONSTRAINT(self.view, self.collectionView, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, -14.f);
-    ADD_CONSTRAINT(self.view, self.collectionView, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, -14.f);
+    ADD_CONSTRAINT(self.view, self.collectionView, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.view, NSLayoutAttributeLeading, 1.f, 0.f);
+    ADD_CONSTRAINT(self.view, self.collectionView, NSLayoutAttributeTop, NSLayoutRelationEqual, self.view, NSLayoutAttributeTop, 1.f, 0.f);
+    ADD_CONSTRAINT(self.view, self.collectionView, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, 0.f);
+    ADD_CONSTRAINT(self.view, self.collectionView, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0.f);
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -81,5 +81,8 @@
     return 14.f;
 }
 
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(14.f, 14.f, 14.f, 14.f);
+}
 
 @end

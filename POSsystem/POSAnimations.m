@@ -19,9 +19,6 @@
 +(void) animate: (NSArray *) newViews
 withPercentages: (NSArray *) percentages
          inView: (UIView *) inView
-    anchoringTo: (UIView *) anchor
-  withAttribute: (NSInteger) anchorAttribute
-   withConstant: (CGFloat) anchorConstant
 appearRightToLeftofView: (UIView *) view
          during: (void (^)(void))during
           after: (void (^)(void))after {
@@ -58,7 +55,7 @@ appearRightToLeftofView: (UIView *) view
         }
         during();
         
-        ADD_CONSTRAINT(inView, view, NSLayoutAttributeTrailing, NSLayoutRelationEqual, anchor, anchorAttribute, 1.f, anchorConstant);
+        ADD_CONSTRAINT(inView, view, NSLayoutAttributeTrailing, NSLayoutRelationEqual, inView, NSLayoutAttributeLeading, 1.f, 0.f);
         ADD_CONSTRAINT(inView, view, NSLayoutAttributeWidth, NSLayoutRelationEqual, inView, NSLayoutAttributeWidth, 1.f, 0);
         
         [inView layoutIfNeeded];
@@ -68,7 +65,7 @@ appearRightToLeftofView: (UIView *) view
                                                                       constraint.firstAttribute == NSLayoutAttributeBottom ||
                                                                       constraint.firstAttribute == NSLayoutAttributeTop)) [inView removeConstraint:constraint];
         }
-        ADD_CONSTRAINT(inView, [newViews objectAtIndex:0], NSLayoutAttributeLeading, NSLayoutRelationEqual, anchor, anchorAttribute, 1.f, anchorConstant);
+        ADD_CONSTRAINT(inView, [newViews objectAtIndex:0], NSLayoutAttributeLeading, NSLayoutRelationEqual, inView, NSLayoutAttributeLeading, 1.f, 0.f);
         
         after();
     }];
@@ -83,9 +80,6 @@ appearRightToLeftofView: (UIView *) view
 +(void) animate: (NSArray *) newViews
 withPercentages: (NSArray *) percentages
          inView: (UIView *) inView
-    anchoringTo: (UIView *) anchor
-  withAttribute: (NSInteger) anchorAttribute
-   withConstant: (CGFloat) anchorConstant
 appearLefttoRightofView: (UIView *) view
          during: (void (^)(void))during
           after: (void (^)(void))after {
@@ -106,21 +100,20 @@ appearLefttoRightofView: (UIView *) view
         CGFloat width = [[percentages objectAtIndex:i++] floatValue];
         ADD_CONSTRAINT(inView, newView, NSLayoutAttributeWidth, NSLayoutRelationEqual, inView, NSLayoutAttributeWidth, width, 0);
     }
+    ADD_CONSTRAINT(inView, view, NSLayoutAttributeLeading, NSLayoutRelationEqual, [newViews lastObject], NSLayoutAttributeTrailing, 1.f, 0.f);
     
     [inView layoutIfNeeded];
     
     [UIView animateWithDuration:0.4 animations:^{
         for(NSLayoutConstraint *constraint in inView.constraints){
             if(constraint.firstItem == view && (constraint.firstAttribute == NSLayoutAttributeTrailing ||
-                                                constraint.firstAttribute == NSLayoutAttributeLeading ||
-                                                constraint.firstAttribute == NSLayoutAttributeWidth)){
+                                                constraint.firstAttribute == NSLayoutAttributeLeading)){
                 [inView removeConstraint:constraint];
             }
         }
         during();
         
-        ADD_CONSTRAINT(inView, view, NSLayoutAttributeLeading, NSLayoutRelationEqual, anchor, anchorAttribute, 1.f, anchorConstant);
-        ADD_CONSTRAINT(inView, view, NSLayoutAttributeWidth, NSLayoutRelationEqual, inView, NSLayoutAttributeWidth, 1.f, 0);
+        ADD_CONSTRAINT(inView, [newViews objectAtIndex:0], NSLayoutAttributeLeading, NSLayoutRelationEqual, inView, NSLayoutAttributeLeading, 1.f, 0.f);
         
         [inView layoutIfNeeded];
     } completion:^(BOOL finished){
@@ -129,7 +122,7 @@ appearLefttoRightofView: (UIView *) view
                                                                       constraint.firstAttribute == NSLayoutAttributeBottom ||
                                                                       constraint.firstAttribute == NSLayoutAttributeTop)) [inView removeConstraint:constraint];
         }
-        ADD_CONSTRAINT(inView, [newViews objectAtIndex:0], NSLayoutAttributeTrailing, NSLayoutRelationEqual, anchor, anchorAttribute, 1.f, anchorConstant);
+        ADD_CONSTRAINT(inView, [newViews objectAtIndex:0], NSLayoutAttributeLeading, NSLayoutRelationEqual, inView, NSLayoutAttributeLeading, 1.f, 0.f);
         
         after();
     }];

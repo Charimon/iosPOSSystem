@@ -9,6 +9,7 @@
 #import "POSProductDetailViewController.h"
 #import "POSConstants.h"
 #import "POSProduct.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface POSProductDetailViewController ()
 @property (strong, nonatomic) UIButton *imageViewButton;
@@ -65,6 +66,22 @@
     _descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
     return _descriptionLabel;
 }
+-(UIButton *) addToCart {
+    if(_addToCart) return _addToCart;
+    _addToCart = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_addToCart setTitle:@"add to cart" forState:UIControlStateNormal];
+    [_addToCart setBackgroundImage:[UIImage imageNamed:@"addToCartBackground"] forState:UIControlStateNormal];
+    [_addToCart setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _addToCart.titleLabel.font = [UIFont fontWithName:@"Lato-Bold" size:22.f];
+    _addToCart.translatesAutoresizingMaskIntoConstraints = NO;
+    _addToCart.layer.borderColor = HEADING_BACKGROUND_BORDER_COLOR.CGColor;
+    _addToCart.layer.borderWidth = 1.f;
+    _addToCart.layer.cornerRadius = 10.f;
+    _addToCart.clipsToBounds = YES;
+    _addToCart.contentEdgeInsets = UIEdgeInsetsMake(10.f, 0.f, 10.f, 0.f);
+    
+    return _addToCart;
+}
 
 
 #pragma mark - view methods
@@ -74,6 +91,7 @@
     [self.view addSubview:self.imageViewButton];
     [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.descriptionLabel];
+    [self.view addSubview:self.addToCart];
     
     ADD_CONSTRAINT(self.view, self.imageView, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.view, NSLayoutAttributeLeading, 1.f, 20.f);
     ADD_CONSTRAINT(self.view, self.imageView, NSLayoutAttributeTop, NSLayoutRelationEqual, self.view, NSLayoutAttributeTop, 1.f, 20.f);
@@ -92,6 +110,11 @@
     ADD_CONSTRAINT(self.view, self.descriptionLabel, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.titleLabel, NSLayoutAttributeLeading, 1.f, 0.f);
     ADD_CONSTRAINT(self.view, self.descriptionLabel, NSLayoutAttributeTop, NSLayoutRelationEqual, self.titleLabel, NSLayoutAttributeBottom, 1.f, 10.f);
     ADD_CONSTRAINT(self.view, self.descriptionLabel, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.titleLabel, NSLayoutAttributeTrailing, 1.f, 0.f);
+    
+    ADD_CONSTRAINT(self.view, self.addToCart, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.imageView, NSLayoutAttributeLeading, 1.f, 0.f);
+    ADD_CONSTRAINT(self.view, self.addToCart, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.imageView, NSLayoutAttributeTrailing, 1.f, 0.f);
+    ADD_CONSTRAINT(self.view, self.addToCart, NSLayoutAttributeTop, NSLayoutRelationEqual, self.imageView, NSLayoutAttributeBottom, 1.f, 10.f);
+    
     
     POSProduct *p = [[POSProduct alloc] init];
     p.title = @"TEST";

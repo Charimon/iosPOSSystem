@@ -15,4 +15,5 @@
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *descriptionLabel;
+@property (strong, nonatomic) UIButton *addToCart;
 @end

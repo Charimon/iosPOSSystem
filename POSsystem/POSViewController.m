@@ -136,11 +136,14 @@
         }
         self.panSlidingViewController = self.categoryViewController;
         
+        CGFloat width = 1.f;
+        if(self.cartViewController){
+            width = .75f;
+        }
         ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeTrailing, NSLayoutRelationEqual, currentController.view, NSLayoutAttributeLeading, 1.f, 0);
         ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeTop, NSLayoutRelationEqual, currentController.view, NSLayoutAttributeTop, 1.f, 0);
-        ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, 1.f, 0);
+        ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, width, 0);
         ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeBottom, NSLayoutRelationEqual, currentController.view, NSLayoutAttributeBottom, 1.f, 0);
-        
         [self.view layoutIfNeeded];
 
     } else if ([currentController isKindOfClass:[POSProductViewController class]]){
@@ -150,11 +153,15 @@
         }
         self.panSlidingViewController = self.subCategoryViewController;
         
+        CGFloat width = 1.f;
+        if(self.cartViewController){
+            width = .75f;
+        }
+        
         ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeTrailing, NSLayoutRelationEqual, currentController.view, NSLayoutAttributeLeading, 1.f, 0);
         ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeTop, NSLayoutRelationEqual, currentController.view, NSLayoutAttributeTop, 1.f, 0);
-        ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, 1.f, 0);
+        ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, width, 0);
         ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeBottom, NSLayoutRelationEqual, currentController.view, NSLayoutAttributeBottom, 1.f, 0);
-        
         [self.view layoutIfNeeded];
     }
     
@@ -172,17 +179,20 @@
         if(ABS(translation.x) > width/2 || velocity.x > 1000.0f){
             [self.navigationBar popControllerPreAnimation:nil];
             [self.view layoutIfNeeded];
+            
             [UIView animateWithDuration:.4
                                   delay:0
                                 options: UIViewAnimationOptionTransitionNone | UIViewAnimationOptionCurveEaseOut
                              animations:^{
                                  for (NSLayoutConstraint *c in self.view.constraints) {
-                                     if(c.firstItem == currentController.view && c.firstAttribute == NSLayoutAttributeLeading) [self.view removeConstraint:c];
+                                     if(c.firstItem == currentController.view && c.firstAttribute == NSLayoutAttributeLeading){
+                                         [self.view removeConstraint:c];
+                                     }
                                  }
                                  
                                  [self.navigationBar popControllerDuringAnimation];
                                  
-                                 ADD_CONSTRAINT(self.view, currentController.view, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, 0.f);
+                                 ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.view, NSLayoutAttributeLeading, 1.f, 0.f);
                                  [self.view layoutIfNeeded];
                                  
                                  
@@ -190,9 +200,13 @@
                                  for (NSLayoutConstraint *c in self.view.constraints) {
                                      if(c.firstItem == self.panSlidingViewController.view) [self.view removeConstraint:c];
                                  }
+                                 CGFloat width = 1.f;
+                                 if(self.cartViewController){
+                                     width = .75f;
+                                 }
                                  
                                  ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.view, NSLayoutAttributeLeading, 1.f, 0.f);
-                                 ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, 1.f, 0.f);
+                                 ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, width, 0.f);
                                  ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeTop, NSLayoutRelationEqual, self.navigationBar, NSLayoutAttributeBottom, 1.f, 0.f);
                                  ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0.f);
                                  
@@ -229,8 +243,6 @@
 -(void) categoryClicked:(NSString *) title {
     [self setupViewController:[POSSubCategoryViewController class]];
     CGFloat width = 1.f;
-    UIView *anchor = self.view;
-    NSInteger anchorPoint = NSLayoutAttributeLeading;
     if(self.cartViewController){
         width = .75f;
     }
@@ -238,9 +250,6 @@
     [POSAnimations animate:[NSArray arrayWithObjects:self.subCategoryViewController.view, nil]
            withPercentages:[NSArray arrayWithObjects:[NSNumber numberWithFloat:width], nil]
                     inView:self.view
-               anchoringTo:anchor
-             withAttribute:anchorPoint
-              withConstant:0.f
    appearRightToLeftofView:self.categoryViewController.view
     during:^{
         [self.navigationBar pushControllerDuringAnimation];
@@ -257,8 +266,6 @@
     [self setupViewController:[POSProductViewController class]];
     [self setupViewController:[POSProductDetailViewController class]];
     CGFloat width = .75f;
-    UIView *anchor = self.view;
-    NSInteger anchorPoint = NSLayoutAttributeLeading;
     if(self.cartViewController){
         width = .5f;
     }
@@ -266,9 +273,6 @@
     [POSAnimations animate:[NSArray arrayWithObjects:self.productViewController.view, self.productDetailViewController.view, nil]
            withPercentages:[NSArray arrayWithObjects:[NSNumber numberWithFloat:.25f], [NSNumber numberWithFloat:width], nil]
                     inView:self.view
-               anchoringTo:anchor
-             withAttribute:anchorPoint
-              withConstant:0.f
    appearRightToLeftofView:self.subCategoryViewController.view
     during:^{
         [self.navigationBar pushControllerDuringAnimation];
@@ -366,20 +370,13 @@
     UIViewController *controllerToLoad = [self getViewControllerFromStackAtIndex: controllerIndex ];
     UIViewController *currentController = [self getViewControllerFromStackAtIndex: [self.controllerStack count] - 1 ];
     CGFloat width = 1.f;
-    UIView *anchor = self.view;
-    NSInteger anchorPoint = NSLayoutAttributeTrailing;
     if(self.cartViewController){
         width = .75f;
-        anchor = self.cartViewController.view;
-        anchorPoint = NSLayoutAttributeLeading;
     }
     
     [POSAnimations animate:[NSArray arrayWithObjects:controllerToLoad.view, nil]
            withPercentages:[NSArray arrayWithObjects:[NSNumber numberWithFloat:width], nil]
                     inView:self.view
-               anchoringTo:anchor
-             withAttribute: anchorPoint
-              withConstant:0.f
    appearLefttoRightofView:currentController.view
                     during:^{
                         [self.navigationBar popControllerDuringAnimation];
@@ -400,8 +397,6 @@
     button.selected = !button.selected;
     self.navigationBar.userButton.selected = NO;
     self.navigationBar.scannerButton.selected = NO;
-    
-
     
     if([button isSelected]) {
         [self setupViewController:[POSCartViewController class]];
@@ -434,7 +429,6 @@
                                      [self.view removeConstraint:constraint];
                                  }
                              }
-                             
          
                              ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeTop, NSLayoutRelationEqual, self.navigationBar, NSLayoutAttributeBottom, 1.f, 0.f);
                              ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, 0.f);
@@ -442,13 +436,11 @@
                              ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0.f);
                              ADD_CONSTRAINT(self.view, shiftingView, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, shiftingViewWidth-.25f, 0.f);
                              
-                             if(self.categoryViewController) [self.categoryViewController.collectionView.collectionViewLayout invalidateLayout];
-                             if(self.subCategoryViewController) [self.subCategoryViewController.collectionView.collectionViewLayout invalidateLayout];
-                             
+                             if(self.categoryViewController)[self.categoryViewController.collectionView.collectionViewLayout invalidateLayout];
+                             if(self.subCategoryViewController)[self.subCategoryViewController.collectionView.collectionViewLayout invalidateLayout];
                              [self.view layoutIfNeeded];
-
                          } completion:^(BOOL finished){}];
-    } else {
+    } else {        
         [UIView animateWithDuration:.4f
                               delay:0.f
                             options:UIViewAnimationOptionTransitionNone | UIViewAnimationOptionCurveEaseInOut
@@ -483,7 +475,6 @@
                              
                              if(self.categoryViewController) [self.categoryViewController.collectionView.collectionViewLayout invalidateLayout];
                              if(self.subCategoryViewController) [self.subCategoryViewController.collectionView.collectionViewLayout invalidateLayout];
-                             
                              [self.view layoutIfNeeded];
                          } completion:^(BOOL finished){
                              [self nilifyViewController:self.cartViewController];

@@ -18,6 +18,7 @@
 #define IMAGE_LABEL_COLOR [UIColor colorWithRed:0.f green:0.f blue:0.f alpha:0.4f]
 #define HEADING_BACKGROUND_COLOR [UIColor colorWithRed:235.f/255.f green:235.f/255.f blue:235.f/255.f alpha:1.f]
 #define HEADING_BACKGROUND_BORDER_COLOR [UIColor colorWithRed:205.f/255.f green:205.f/255.f blue:205.f/255.f alpha:1.f]
+#define SELECTED_BACKGROUND_COLOR [UIColor colorWithRed:131.f/255.f green:70.f/255.f blue:60.f/255.f alpha:1.f]
 
 //sizes
 #define NAVIGATION_BAR_HEIGHT 50.f

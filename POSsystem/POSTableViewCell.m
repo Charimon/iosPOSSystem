@@ -61,9 +61,9 @@
         [self.contentView addSubview:self.thumbnailImageView];
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.descriptionLabel];
-        ADD_CONSTRAINT(self.contentView, self.thumbnailImageView, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.contentView, NSLayoutAttributeLeading, 1.f, 1.f);
-        ADD_CONSTRAINT(self.contentView, self.thumbnailImageView, NSLayoutAttributeTop, NSLayoutRelationEqual, self.contentView, NSLayoutAttributeTop, 1.f, 0);
-        ADD_CONSTRAINT(self.contentView, self.thumbnailImageView, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.contentView, NSLayoutAttributeBottom, 1.f, -1.f);
+        ADD_CONSTRAINT(self.contentView, self.thumbnailImageView, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.contentView, NSLayoutAttributeLeading, 1.f, 0.f);
+        ADD_CONSTRAINT(self.contentView, self.thumbnailImageView, NSLayoutAttributeTop, NSLayoutRelationEqual, self.contentView, NSLayoutAttributeTop, 1.f, 0.f);
+        ADD_CONSTRAINT(self.contentView, self.thumbnailImageView, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.contentView, NSLayoutAttributeBottom, 1.f, 0.f);
         ADD_CONSTRAINT(self.contentView, self.thumbnailImageView, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.thumbnailImageView, NSLayoutAttributeHeight, 1.f, 0);
         
         ADD_CONSTRAINT(self.contentView, self.titleLabel, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.thumbnailImageView, NSLayoutAttributeTrailing, 1.f, 8.f);
@@ -74,6 +74,9 @@
         ADD_CONSTRAINT(self.contentView, self.descriptionLabel, NSLayoutAttributeTop, NSLayoutRelationEqual, self.titleLabel, NSLayoutAttributeBottom, 1.f, 0);
         ADD_CONSTRAINT(self.contentView, self.descriptionLabel, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.contentView, NSLayoutAttributeTrailing, 1.f, 0);
         ADD_CONSTRAINT(self.contentView, self.descriptionLabel, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.contentView, NSLayoutAttributeBottom, 1.f, 0);
+        UIView *s = [[UIView alloc] init];
+        s.backgroundColor = SELECTED_BACKGROUND_COLOR;
+        self.selectedBackgroundView = s;
     }
     return self;
 }
@@ -81,6 +84,13 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
+    if(selected){
+        self.titleLabel.textColor = [UIColor whiteColor];
+        self.descriptionLabel.textColor = [UIColor whiteColor];
+    } else {
+        self.titleLabel.textColor = [UIColor blackColor];
+        self.descriptionLabel.textColor = [UIColor blackColor];
+    }
 }
 
 -(void) setupWithProduct: (POSProduct *) product {

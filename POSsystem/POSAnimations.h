@@ -13,9 +13,6 @@
 +(void) animate: (NSArray *) newViews
 withPercentages: (NSArray *) percentages
          inView: (UIView *) inView
-    anchoringTo: (UIView *) anchor
-  withAttribute: (NSInteger) anchorAttribute
-   withConstant: (CGFloat) anchorConstant
 appearRightToLeftofView: (UIView *) view
          during: (void (^)(void))during
           after: (void (^)(void))after;
@@ -23,9 +20,6 @@ appearRightToLeftofView: (UIView *) view
 +(void) animate: (NSArray *) newViews
 withPercentages: (NSArray *) percentages
          inView: (UIView *) inView
-    anchoringTo: (UIView *) anchor
-  withAttribute: (NSInteger) anchorAttribute
-   withConstant: (CGFloat) anchorConstant
 appearLefttoRightofView: (UIView *) view
          during: (void (^)(void))during
           after: (void (^)(void))after;

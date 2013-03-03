@@ -46,6 +46,8 @@
 		33564D2116E19DA00025D8D8 /* POSCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564D2016E19D9F0025D8D8 /* POSCartViewController.m */; };
 		3378721C16E36A31001C6E53 /* POSProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 3378721B16E36A31001C6E53 /* POSProduct.m */; };
 		3378721F16E36B35001C6E53 /* POSProductGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3378721E16E36B35001C6E53 /* POSProductGroup.m */; };
+		3378722216E38991001C6E53 /* POSSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3378722116E38990001C6E53 /* POSSearchViewController.m */; };
+		3378722416E38F06001C6E53 /* addToCartBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3378722316E38F06001C6E53 /* addToCartBackground.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +121,9 @@
 		3378721B16E36A31001C6E53 /* POSProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSProduct.m; sourceTree = "<group>"; };
 		3378721D16E36B35001C6E53 /* POSProductGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSProductGroup.h; sourceTree = "<group>"; };
 		3378721E16E36B35001C6E53 /* POSProductGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSProductGroup.m; sourceTree = "<group>"; };
+		3378722016E38990001C6E53 /* POSSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSSearchViewController.h; sourceTree = "<group>"; };
+		3378722116E38990001C6E53 /* POSSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSSearchViewController.m; sourceTree = "<group>"; };
+		3378722316E38F06001C6E53 /* addToCartBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addToCartBackground.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +247,8 @@
 				33564D1916DFEFFA0025D8D8 /* POSGalleryViewController.m */,
 				33564D1F16E19D9E0025D8D8 /* POSCartViewController.h */,
 				33564D2016E19D9F0025D8D8 /* POSCartViewController.m */,
+				3378722016E38990001C6E53 /* POSSearchViewController.h */,
+				3378722116E38990001C6E53 /* POSSearchViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -283,6 +290,7 @@
 				33564D1216DFAFC80025D8D8 /* scanner.png */,
 				33564D0E16DFA9620025D8D8 /* navBarButton.png */,
 				33564D1616DFE3080025D8D8 /* navBarButtonSelected.png */,
+				3378722316E38F06001C6E53 /* addToCartBackground.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -395,6 +403,7 @@
 				33564D1316DFAFC80025D8D8 /* scanner.png in Resources */,
 				33564D1516DFB1C30025D8D8 /* navBarChevron.png in Resources */,
 				33564D1716DFE3080025D8D8 /* navBarButtonSelected.png in Resources */,
+				3378722416E38F06001C6E53 /* addToCartBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +453,7 @@
 				33564D2116E19DA00025D8D8 /* POSCartViewController.m in Sources */,
 				3378721C16E36A31001C6E53 /* POSProduct.m in Sources */,
 				3378721F16E36B35001C6E53 /* POSProductGroup.m in Sources */,
+				3378722216E38991001C6E53 /* POSSearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -441,6 +441,7 @@
                              ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, .25f, 0.f);
                              ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0.f);
                              ADD_CONSTRAINT(self.view, shiftingView, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, shiftingViewWidth-.25f, 0.f);
+                             
                              if(self.categoryViewController) [self.categoryViewController.collectionView.collectionViewLayout invalidateLayout];
                              if(self.subCategoryViewController) [self.subCategoryViewController.collectionView.collectionViewLayout invalidateLayout];
                              
@@ -458,12 +459,16 @@
                                  if(constraint.firstItem == self.cartViewController.view){
                                      [self.view removeConstraint:constraint];
                                  }
-                                 if(constraint.secondItem == self.cartViewController.view){
-                                     
-                                 }boundView = constraint.firstItem;
-                             }
-                             for(NSLayoutConstraint *constraint in self.view.constraints){
-                                 if(constraint.firstItem == boundView && constraint.firstAttribute == NSLayoutAttributeWidth) {
+                                 if(constraint.firstItem == self.categoryViewController.view && constraint.firstAttribute == NSLayoutAttributeWidth){
+                                     boundView = constraint.firstItem;
+                                     boundViewWidthMultiplier = constraint.multiplier;
+                                     [self.view removeConstraint:constraint];
+                                 } else if (constraint.firstItem == self.subCategoryViewController.view && constraint.firstAttribute == NSLayoutAttributeWidth) {
+                                     boundView = constraint.firstItem;
+                                     boundViewWidthMultiplier = constraint.multiplier;
+                                     [self.view removeConstraint:constraint];
+                                 } else if (constraint.firstItem == self.productDetailViewController.view && constraint.firstAttribute == NSLayoutAttributeWidth) {
+                                     boundView = constraint.firstItem;
                                      boundViewWidthMultiplier = constraint.multiplier;
                                      [self.view removeConstraint:constraint];
                                  }
@@ -476,11 +481,12 @@
                              
                              ADD_CONSTRAINT(self.view, boundView, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, boundViewWidthMultiplier+.25, 0.f);
                              
+                             if(self.categoryViewController) [self.categoryViewController.collectionView.collectionViewLayout invalidateLayout];
+                             if(self.subCategoryViewController) [self.subCategoryViewController.collectionView.collectionViewLayout invalidateLayout];
+                             
                              [self.view layoutIfNeeded];
                          } completion:^(BOOL finished){
                              [self nilifyViewController:self.cartViewController];
-                             if(self.categoryViewController) [self.categoryViewController.collectionView.collectionViewLayout invalidateLayout];
-                             if(self.subCategoryViewController) [self.subCategoryViewController.collectionView.collectionViewLayout invalidateLayout];
                          }];
     }
 }

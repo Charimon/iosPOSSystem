@@ -15,6 +15,7 @@
 
 @implementation POSGalleryViewController
 
+#pragma mark - setters/getters
 -(UIImageView *) imageView {
     if(_imageView) return _imageView;
     _imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sofa1"]];
@@ -34,6 +35,7 @@
     return _closeButton;
 }
 
+#pragma mark - view methods
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

@@ -12,10 +12,39 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface POSCartViewController ()
-
+@property (strong, nonatomic) UIView *border;
+@property (strong, nonatomic) UIView *footerBorder;
 @end
 
 @implementation POSCartViewController
+
+#pragma mark - setters/getters
+-(UIView *) border {
+    if(_border) return _border;
+    _border = [[UIView alloc] initWithFrame:CGRectZero];
+    _border.backgroundColor = HEADING_BACKGROUND_BORDER_COLOR;
+    
+    _border.translatesAutoresizingMaskIntoConstraints = NO;
+    return _border;
+}
+
+-(UIView *) footerBorder {
+    if(_footerBorder) return _footerBorder;
+    _footerBorder = [[UIView alloc] initWithFrame:CGRectZero];
+    _footerBorder.backgroundColor = HEADING_BACKGROUND_BORDER_COLOR;
+    
+    _footerBorder.translatesAutoresizingMaskIntoConstraints = NO;
+    return _footerBorder;
+}
+
+-(UIView *) footer {
+    if(_footer) return _footer;
+    _footer = [[UIView alloc] initWithFrame:CGRectZero];
+    _footer.backgroundColor = HEADING_BACKGROUND_COLOR;
+    
+    _footer.translatesAutoresizingMaskIntoConstraints = NO;
+    return _footer;
+}
 
 -(NSMutableArray *) data {
     _data = [[NSMutableArray alloc] init];
@@ -35,25 +64,36 @@
     return _tableView;
 }
 
+#pragma mark - view methods
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.border];
+    [self.view addSubview: self.footer];
+    [self.view addSubview: self.footerBorder];
     
-    ADD_CONSTRAINT(self.view, self.tableView, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.view, NSLayoutAttributeLeading, 1.f, 0.f);
+    ADD_CONSTRAINT(self.view, self.tableView, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.view, NSLayoutAttributeLeading, 1.f, 1.f);
     ADD_CONSTRAINT(self.view, self.tableView, NSLayoutAttributeTop, NSLayoutRelationEqual, self.view, NSLayoutAttributeTop, 1.f, 0.f);
     ADD_CONSTRAINT(self.view, self.tableView, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, 0.f);
-    ADD_CONSTRAINT(self.view, self.tableView, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0.f);
+    ADD_CONSTRAINT(self.view, self.tableView, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.footerBorder, NSLayoutAttributeTop, 1.f, 0.f);
+    
+    ADD_CONSTRAINT(self.view, self.border, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.view, NSLayoutAttributeLeading, 1.f, 0.f);
+    ADD_CONSTRAINT(self.view, self.border, NSLayoutAttributeTop, NSLayoutRelationEqual, self.view, NSLayoutAttributeTop, 1.f, 0.f);
+    ADD_CONSTRAINT(self.view, self.border, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, 0.f, 1.f);
+    ADD_CONSTRAINT(self.view, self.border, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0.f);
+
+    ADD_CONSTRAINT(self.view, self.footer, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.view, NSLayoutAttributeLeading, 1.f, 1.f);
+    ADD_CONSTRAINT(self.view, self.footer, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, 0.f);
+    ADD_CONSTRAINT(self.view, self.footer, NSLayoutAttributeHeight, NSLayoutRelationEqual, self.footer, NSLayoutAttributeHeight, 0.f, NAVIGATION_BAR_HEIGHT);
+    ADD_CONSTRAINT(self.view, self.footer, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0.f);
+    
+    ADD_CONSTRAINT(self.view, self.footerBorder, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.view, NSLayoutAttributeLeading, 1.f, 1.f);
+    ADD_CONSTRAINT(self.view, self.footerBorder, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, 0.f);
+    ADD_CONSTRAINT(self.view, self.footerBorder, NSLayoutAttributeHeight, NSLayoutRelationEqual, self.footer, NSLayoutAttributeHeight, 0.f, 1.f);
+    ADD_CONSTRAINT(self.view, self.footerBorder, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.footer, NSLayoutAttributeTop, 1.f, 0.f);
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.view.layer.borderColor = HEADING_BACKGROUND_BORDER_COLOR.CGColor;
-    self.view.layer.borderWidth = 1.f;
-    self.view.layer.cornerRadius = 10.f;
-    self.view.layer.shadowColor = HEADING_BACKGROUND_COLOR.CGColor;
-    self.view.layer.shadowOpacity = 0.9f;
-    self.view.layer.shadowRadius = 5.f;
-    self.view.layer.shadowOffset = CGSizeMake(0, 0);
 }
 
 #pragma mark - UITableViewDataSource

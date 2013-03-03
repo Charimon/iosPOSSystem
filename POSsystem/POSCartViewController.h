@@ -12,6 +12,7 @@
 @interface POSCartViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) UIView *footer;
 
 //type: NSMutableArray[NSMutableArray[NSString *]]
 @property (strong, nonatomic) NSMutableArray *data;

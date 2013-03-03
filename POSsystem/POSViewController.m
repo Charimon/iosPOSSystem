@@ -67,7 +67,11 @@
 -(UIViewController *) setupViewController: (Class) classToSetup {
     UIViewController * controller = [[classToSetup alloc] init];
     [self addChildViewController:controller];
-    [self.view addSubview:controller.view];
+    if(self.cartViewController){
+        [self.view insertSubview:controller.view belowSubview:self.cartViewController.view];
+    } else {
+        [self.view addSubview:controller.view];
+    }
     
     controller.view.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -387,25 +391,50 @@
     self.navigationBar.userButton.selected = NO;
     self.navigationBar.scannerButton.selected = NO;
     
-    [self setupViewController:[POSCartViewController class]];
-    
-    ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeTop, NSLayoutRelationEqual, self.navigationBar, NSLayoutAttributeBottom, 1.f, 10.f);
-    ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, -10.f);
-    ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, .25f, 0.f);
-    ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, -10.f);
-    [self.view layoutIfNeeded];
-    self.cartViewController.view.alpha = 0.f;
+
     
     if([button isSelected]) {
+        [self setupViewController:[POSCartViewController class]];
+        self.cartViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
+        ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeTop, NSLayoutRelationEqual, self.navigationBar, NSLayoutAttributeBottom, 1.f, 0.f);
+        ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, 0.f);
+        ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, .25f, 0.f);
+        ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0.f);
+        [self.view layoutIfNeeded];
         [UIView animateWithDuration:.4f
                               delay:0.f
-                            options:UIViewAnimationOptionTransitionNone | UIViewAnimationOptionCurveEaseIn
+                            options:UIViewAnimationOptionTransitionNone | UIViewAnimationOptionCurveEaseInOut
                          animations:^{
-                             self.cartViewController.view.alpha = 1.f;
+                             for(NSLayoutConstraint *constraint in self.view.constraints){
+                                 if(constraint.firstItem == self.cartViewController.view)
+                                     [self.view removeConstraint:constraint];
+                             }
+         
+                             ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeTop, NSLayoutRelationEqual, self.navigationBar, NSLayoutAttributeBottom, 1.f, 0.f);
+                             ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, 0.f);
+                             ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, .25f, 0.f);
+                             ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0.f);
                              [self.view layoutIfNeeded];
+
                          } completion:^(BOOL finished){}];
     } else {
-        self.cartViewController = nil;
+        [UIView animateWithDuration:.4f
+                              delay:0.f
+                            options:UIViewAnimationOptionTransitionNone | UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             for(NSLayoutConstraint *constraint in self.view.constraints){
+                                 if(constraint.firstItem == self.cartViewController.view)
+                                     [self.view removeConstraint:constraint];
+                             }
+                             
+                             ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeTop, NSLayoutRelationEqual, self.navigationBar, NSLayoutAttributeBottom, 1.f, 0.f);
+                             ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, 0.f);
+                             ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, .25f, 0.f);
+                             ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0.f);
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished){
+                             [self nilifyViewController:self.cartViewController];
+                         }];
     }
 }
 

@@ -43,6 +43,7 @@
 		33564D1716DFE3080025D8D8 /* navBarButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 33564D1616DFE3080025D8D8 /* navBarButtonSelected.png */; };
 		33564D1A16DFEFFA0025D8D8 /* POSGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564D1916DFEFFA0025D8D8 /* POSGalleryViewController.m */; };
 		33564D1E16E0FB5B0025D8D8 /* POSAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564D1D16E0FB5B0025D8D8 /* POSAnimations.m */; };
+		33564D2116E19DA00025D8D8 /* POSCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33564D2016E19D9F0025D8D8 /* POSCartViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,8 @@
 		33564D1916DFEFFA0025D8D8 /* POSGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSGalleryViewController.m; sourceTree = "<group>"; };
 		33564D1C16E0FB5B0025D8D8 /* POSAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAnimations.h; sourceTree = "<group>"; };
 		33564D1D16E0FB5B0025D8D8 /* POSAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAnimations.m; sourceTree = "<group>"; };
+		33564D1F16E19D9E0025D8D8 /* POSCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSCartViewController.h; sourceTree = "<group>"; };
+		33564D2016E19D9F0025D8D8 /* POSCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSCartViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +232,8 @@
 				33564CDF16DF18880025D8D8 /* POSProductDetailViewController.m */,
 				33564D1816DFEFFA0025D8D8 /* POSGalleryViewController.h */,
 				33564D1916DFEFFA0025D8D8 /* POSGalleryViewController.m */,
+				33564D1F16E19D9E0025D8D8 /* POSCartViewController.h */,
+				33564D2016E19D9F0025D8D8 /* POSCartViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -416,6 +421,7 @@
 				33564D0916DF81FD0025D8D8 /* POSTableViewCell.m in Sources */,
 				33564D1A16DFEFFA0025D8D8 /* POSGalleryViewController.m in Sources */,
 				33564D1E16E0FB5B0025D8D8 /* POSAnimations.m in Sources */,
+				33564D2116E19DA00025D8D8 /* POSCartViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

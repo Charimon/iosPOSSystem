@@ -50,6 +50,10 @@
     ADD_CONSTRAINT(self.view, self.collectionView, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0.f);
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self.collectionView.collectionViewLayout invalidateLayout];
+}
+
 #pragma mark - UICollectionViewDataSource
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return [self.data count];
@@ -74,15 +78,20 @@
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(188.f, 188.f);
+    CGFloat width = collectionView.frame.size.width;
+    //does magic to adjust widths of cells based on sizes... hard to explain what... try rotating nad see
+    NSInteger numberOfCellsInRow = (int)((width-COLLECTION_VIEW_CELL_SPACING)/(COLLECTION_VIEW_MIN_CELLS_WIDTH-COLLECTION_VIEW_CELL_SPACING));
+    NSInteger cellWidth = (width-COLLECTION_VIEW_CELL_SPACING)/numberOfCellsInRow - COLLECTION_VIEW_CELL_SPACING;
+    
+    return CGSizeMake(cellWidth, cellWidth);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 14.f;
+    return COLLECTION_VIEW_CELL_SPACING;
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(14.f, 14.f, 14.f, 14.f);
+    return UIEdgeInsetsMake(COLLECTION_VIEW_CELL_SPACING, COLLECTION_VIEW_CELL_SPACING, COLLECTION_VIEW_CELL_SPACING, COLLECTION_VIEW_CELL_SPACING);
 }
 
 @end

@@ -12,6 +12,7 @@
 #import "POSProductViewController.h"
 #import "POSProductDetailViewController.h"
 #import "POSGalleryViewController.h"
+#import "POSCartViewController.h"
 #import "POSConstants.h"
 #import "POSAnimations.h"
 
@@ -21,19 +22,16 @@
 @property (strong, nonatomic) POSProductViewController * productViewController;
 @property (strong, nonatomic) POSProductDetailViewController * productDetailViewController;
 @property (strong, nonatomic) POSGalleryViewController * galleryViewController;
+@property (strong, nonatomic) POSCartViewController * cartViewController;
 
 @property (strong, nonatomic) POSNavigationBar * navigationBar;
 @property (nonatomic, strong) UIPanGestureRecognizer* panGestureRecognizer;
 @property (nonatomic, strong) UIViewController* panSlidingViewController;
 
-//type: NSMutableDictionary[NSString, block^]
+//type: NSMutableDictionary[NSString, NSString]
 @property (nonatomic, strong) NSMutableDictionary* nilifyDictionary;
 
--(void) setupCategoryViewController;
--(void) setupSubCategoryViewController;
--(void) setupProductViewController;
--(void) setupProductDetailViewController;
-
+-(UIViewController *) setupViewController: (Class) classToSetup;
 -(void) nilifyViewController: (UIViewController *) viewController;
 
 -(void) handlePanFrom: (UIPanGestureRecognizer *)recognizer;
@@ -93,49 +91,14 @@
         self.productDetailViewController.coordinatorDelegate = self;
         self.productDetailViewController.title = @"Product Detail";
         [self.nilifyDictionary setObject:@"productDetailViewController" forKey:NSStringFromClass([POSProductDetailViewController class])];
+    } else if ([controller isKindOfClass:[POSCartViewController class]]) {
+        self.cartViewController = (POSCartViewController *)controller;
+        self.cartViewController.coordinatorDelegate = self;
+        self.cartViewController.title = @"Cart";
+        [self.nilifyDictionary setObject:@"cartViewController" forKey:NSStringFromClass([POSCartViewController class])];
+
     }
     return controller;
-}
-
--(void) setupCategoryViewController {
-    self.categoryViewController = [[POSCategoryViewController alloc] init];
-    self.categoryViewController.coordinatorDelegate = self;
-    self.categoryViewController.title = @"Categories";
-    [self addChildViewController:self.categoryViewController];
-    [self.view addSubview:self.categoryViewController.view];
-    
-    [self.nilifyDictionary setObject:@"categoryViewController" forKey:NSStringFromClass([POSCategoryViewController class])];
-    self.categoryViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
-}
--(void) setupSubCategoryViewController {
-    self.subCategoryViewController = [[POSSubCategoryViewController alloc] init];
-    self.subCategoryViewController.coordinatorDelegate = self;
-    self.subCategoryViewController.title = @"Sub Categories";
-    [self addChildViewController:self.subCategoryViewController];
-    [self.view addSubview:self.subCategoryViewController.view];
-    
-    [self.nilifyDictionary setObject:@"subCategoryViewController" forKey:NSStringFromClass([POSSubCategoryViewController class])];
-    self.subCategoryViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
-}
--(void) setupProductViewController {
-    self.productViewController = [[POSProductViewController alloc] init];
-    self.productViewController.coordinatorDelegate = self;
-    self.productViewController.title = @"Products";
-    [self addChildViewController:self.productViewController];
-    [self.view addSubview:self.productViewController.view];
-    
-    [self.nilifyDictionary setObject:@"productViewController" forKey:NSStringFromClass([POSProductViewController class])];
-    self.productViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
-}
--(void) setupProductDetailViewController {
-    self.productDetailViewController = [[POSProductDetailViewController alloc] init];
-    self.productDetailViewController.coordinatorDelegate = self;
-    self.productDetailViewController.title = @"Product Detail";
-    [self addChildViewController:self.productDetailViewController];
-    [self.view addSubview:self.productDetailViewController.view];
-    
-    [self.nilifyDictionary setObject:@"productDetailViewController" forKey:NSStringFromClass([POSProductDetailViewController class])];
-    self.productDetailViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 #pragma mark - nilifier method
@@ -152,7 +115,7 @@
 #pragma mark - view methods
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setupCategoryViewController];
+    [self setupViewController:[POSCategoryViewController class]];
     
     [self.view addSubview:self.navigationBar];
     [self addToControllerStack:self.categoryViewController];
@@ -185,7 +148,9 @@
     if(!currentController || [currentController isKindOfClass:[POSCategoryViewController class]]) {
         return;
     } else if ([currentController isKindOfClass:[POSSubCategoryViewController class]]) {
-        if([self.categoryViewController parentViewController] == nil) [self setupCategoryViewController];
+        if([self.categoryViewController parentViewController] == nil){
+            [self setupViewController:[POSCategoryViewController class]];
+        }
         self.panSlidingViewController = self.categoryViewController;
         
         ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeTrailing, NSLayoutRelationEqual, currentController.view, NSLayoutAttributeLeading, 1.f, 0);
@@ -195,8 +160,10 @@
         
         [self.view layoutIfNeeded];
 
-    } else if ([currentController isKindOfClass:[POSProductViewController class]]) {
-        if([self.subCategoryViewController parentViewController] == nil) [self setupSubCategoryViewController];
+    } else if ([currentController isKindOfClass:[POSProductViewController class]]){
+        if([self.subCategoryViewController parentViewController] == nil){
+            [self setupViewController:[POSSubCategoryViewController class]];
+        }
         self.panSlidingViewController = self.subCategoryViewController;
         
         ADD_CONSTRAINT(self.view, self.panSlidingViewController.view, NSLayoutAttributeTrailing, NSLayoutRelationEqual, currentController.view, NSLayoutAttributeLeading, 1.f, 0);
@@ -276,7 +243,7 @@
 
 #pragma mark - POSCoordinatorDelegate
 -(void) categoryClicked {
-    [self setupSubCategoryViewController];
+    [self setupViewController:[POSSubCategoryViewController class]];
     
     [POSAnimations animate:self.subCategoryViewController.view
                     inView:self.view
@@ -293,8 +260,8 @@
 }
 
 -(void) subCategoryClicked {
-    [self setupProductViewController];
-    [self setupProductDetailViewController];
+    [self setupViewController:[POSProductViewController class]];
+    [self setupViewController:[POSProductDetailViewController class]];
     
     [POSAnimations animate:[NSArray arrayWithObjects:self.productViewController.view, self.productDetailViewController.view, nil]
            withPercentages:[NSArray arrayWithObjects:[NSNumber numberWithFloat:.25f], [NSNumber numberWithFloat:.75f], nil]
@@ -419,6 +386,27 @@
     button.selected = !button.selected;
     self.navigationBar.userButton.selected = NO;
     self.navigationBar.scannerButton.selected = NO;
+    
+    [self setupViewController:[POSCartViewController class]];
+    
+    ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeTop, NSLayoutRelationEqual, self.navigationBar, NSLayoutAttributeBottom, 1.f, 10.f);
+    ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, -10.f);
+    ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, .25f, 0.f);
+    ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, -10.f);
+    [self.view layoutIfNeeded];
+    self.cartViewController.view.alpha = 0.f;
+    
+    if([button isSelected]) {
+        [UIView animateWithDuration:.4f
+                              delay:0.f
+                            options:UIViewAnimationOptionTransitionNone | UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             self.cartViewController.view.alpha = 1.f;
+                             [self.view layoutIfNeeded];
+                         } completion:^(BOOL finished){}];
+    } else {
+        self.cartViewController = nil;
+    }
 }
 
 -(void) userButtonClicked: (UIButton *) button {

@@ -78,7 +78,7 @@
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat width = self.view.frame.size.width;
+    CGFloat width = collectionView.frame.size.width;
     //does magic to adjust widths of cells based on sizes... hard to explain what... try rotating nad see
     NSInteger numberOfCellsInRow = (int)((width-COLLECTION_VIEW_CELL_SPACING)/(COLLECTION_VIEW_MIN_CELLS_WIDTH-COLLECTION_VIEW_CELL_SPACING));
     NSInteger cellWidth = (width-COLLECTION_VIEW_CELL_SPACING)/numberOfCellsInRow - COLLECTION_VIEW_CELL_SPACING;

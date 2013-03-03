@@ -76,7 +76,7 @@
     
     ADD_CONSTRAINT(self.view, self.imageView, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.view, NSLayoutAttributeLeading, 1.f, 20.f);
     ADD_CONSTRAINT(self.view, self.imageView, NSLayoutAttributeTop, NSLayoutRelationEqual, self.view, NSLayoutAttributeTop, 1.f, 20.f);
-    ADD_CONSTRAINT(self.view, self.imageView, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, 0.f, 200.f);
+    ADD_CONSTRAINT(self.view, self.imageView, NSLayoutAttributeWidth, NSLayoutRelationLessThanOrEqual, self.view, NSLayoutAttributeWidth, 0.f, 200.f);
     ADD_CONSTRAINT(self.view, self.imageView, NSLayoutAttributeHeight, NSLayoutRelationEqual, self.imageView, NSLayoutAttributeWidth, 1.f, 0.f);
     
     ADD_CONSTRAINT(self.view, self.imageViewButton, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.imageView, NSLayoutAttributeLeading, 1.f, 0.f);

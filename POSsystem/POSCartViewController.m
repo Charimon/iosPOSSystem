@@ -1,22 +1,22 @@
 //
-//  POSProductViewController.m
+//  POSCartViewController.m
 //  POSsystem
 //
-//  Created by Andrew Charkin on 2/27/13.
+//  Created by Andrew Charkin on 3/1/13.
 //  Copyright (c) 2013 POS. All rights reserved.
 //
 
-#import "POSProductViewController.h"
+#import "POSCartViewController.h"
 #import "POSTableViewCell.h"
 #import "POSConstants.h"
+#import <QuartzCore/QuartzCore.h>
 
-@interface POSProductViewController ()
-@property (strong, nonatomic) UIView *border;
+@interface POSCartViewController ()
+
 @end
 
-@implementation POSProductViewController
+@implementation POSCartViewController
 
-#pragma mark - getters/setters
 -(NSMutableArray *) data {
     _data = [[NSMutableArray alloc] init];
     [_data addObject:[[NSMutableArray alloc] initWithObjects:@"Sofa 1", @"Sofa 2", @"Sofa 3", @"Sofa 4", @"Sofa 5", @"Sofa 6", nil]];
@@ -35,30 +35,25 @@
     return _tableView;
 }
 
--(UIView *) border {
-    if(_border) return _border;
-    _border = [[UIView alloc] initWithFrame:CGRectZero];
-    _border.backgroundColor = HEADING_BACKGROUND_BORDER_COLOR;
-    
-    _border.translatesAutoresizingMaskIntoConstraints = NO;
-    return _border;
-}
-
-#pragma mark - view methods
-- (void) viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
+    
     [self.view addSubview:self.tableView];
-    [self.view addSubview:self.border];
     
     ADD_CONSTRAINT(self.view, self.tableView, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.view, NSLayoutAttributeLeading, 1.f, 0.f);
     ADD_CONSTRAINT(self.view, self.tableView, NSLayoutAttributeTop, NSLayoutRelationEqual, self.view, NSLayoutAttributeTop, 1.f, 0.f);
-    ADD_CONSTRAINT(self.view, self.tableView, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, -1.f);
+    ADD_CONSTRAINT(self.view, self.tableView, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, 0.f);
     ADD_CONSTRAINT(self.view, self.tableView, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0.f);
     
-    ADD_CONSTRAINT(self.view, self.border, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, 0.f);
-    ADD_CONSTRAINT(self.view, self.border, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, 0.f, 1.f);
-    ADD_CONSTRAINT(self.view, self.border, NSLayoutAttributeTop, NSLayoutRelationEqual, self.view, NSLayoutAttributeTop, 1.f, 0.f);
-    ADD_CONSTRAINT(self.view, self.border, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0.f);
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.layer.borderColor = HEADING_BACKGROUND_BORDER_COLOR.CGColor;
+    self.view.layer.borderWidth = 1.f;
+    self.view.layer.cornerRadius = 10.f;
+    self.view.layer.shadowColor = HEADING_BACKGROUND_COLOR.CGColor;
+    self.view.layer.shadowOpacity = 0.9f;
+    self.view.layer.shadowRadius = 5.f;
+    self.view.layer.shadowOffset = CGSizeMake(0, 0);
 }
 
 #pragma mark - UITableViewDataSource
@@ -80,9 +75,5 @@
     return cell;
 }
 
-#pragma mark - UITableViewDelegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60.f;
-}
 
 @end

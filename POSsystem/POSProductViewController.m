@@ -22,7 +22,14 @@
 
 -(NSMutableArray *) data {
     _data = [[NSMutableArray alloc] init];
-    [_data addObject:[[NSMutableArray alloc] initWithObjects:@"Sofa 1", @"Sofa 2", @"Sofa 3", @"Sofa 4", @"Sofa 5", @"Sofa 6", nil]];
+    [_data addObject:[[NSMutableArray alloc] init]];
+    for(NSString *obj in [[NSMutableArray alloc] initWithObjects:@"Sofa 1", @"Sofa 2", @"Sofa 3", @"Sofa 4", @"Sofa 5", @"Sofa 6", nil]){
+        POSProduct *p = [[POSProduct alloc] init];
+        p.title = obj;
+        p.description = @"test";
+        [[_data objectAtIndex:0] addObject:p];
+    }
+    
     return _data;
 }
 
@@ -77,9 +84,7 @@
     POSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLE_VIEW_CELL_INDENTIFIER forIndexPath:indexPath];
     if(cell == nil) cell = [[POSTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TABLE_VIEW_CELL_INDENTIFIER];
     
-    POSProduct *p = [[POSProduct alloc] init];
-    p.title = [[self.data objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    p.description = @"test";
+    POSProduct *p = [[self.data objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     [cell setupWithProduct:p];
     return cell;
 }

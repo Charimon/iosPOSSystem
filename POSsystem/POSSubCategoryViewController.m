@@ -37,7 +37,14 @@
 @synthesize data = _data;
 -(NSMutableArray *) data {
     _data = [[NSMutableArray alloc] init];
-    [_data addObject:[[NSMutableArray alloc] initWithObjects:@"Sofa", @"nicer sofa", @"sooper nice sofa", @"TEST", @"TEST", @"TEST", nil]];
+    [_data addObject:[[NSMutableArray alloc] init]];
+    for(NSString *obj in [[NSMutableArray alloc] initWithObjects:@"Sofa", @"nicer sofa", @"sooper nice sofa", @"TEST", @"TEST", @"TEST", nil]){
+        POSProductGroup *p = [[POSProductGroup alloc] init];
+        p.title = obj;
+        p.description = @"test";
+        [[_data objectAtIndex:0] addObject:p];
+    }
+    
     return _data;
 }
 
@@ -68,11 +75,7 @@
     POSCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:COLLECTION_VIEW_CELL_IDENTIFIER forIndexPath:indexPath];
     if(cell == nil) cell = [[POSCollectionViewCell alloc] init];
     
-    NSString *dataValue = [[self.data objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    
-    POSProductGroup *p = [[POSProductGroup alloc] init];
-    p.title = dataValue;
-    
+    POSProductGroup *p = [[self.data objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     [cell setupWithProduct:p];
     return cell;
 }

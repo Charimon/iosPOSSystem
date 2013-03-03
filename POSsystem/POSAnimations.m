@@ -11,22 +11,20 @@
 
 @implementation POSAnimations
 
-//new view will slide in from the right to occupy entire Space
-+(void) animate: (UIView *) newView inView: (UIView *) inView appearRightToLeftofView: (UIView *) view during: (void (^)(void))during after: (void (^)(void))after {
-    
-    [POSAnimations animate:[NSArray arrayWithObject:newView]
-           withPercentages:[NSArray arrayWithObject:[NSNumber numberWithFloat:1.f]]
-                    inView:inView
-   appearRightToLeftofView:view
-                    during:during
-                     after:after];
-}
-
 /*
+ * new view will slide in from the right to occupy entire Space
  * newViews : NSArray[UIView *]
  * percentages : NSArray[NSNumber *]
  */
-+(void) animate: (NSArray *) newViews withPercentages: (NSArray *) percentages inView: (UIView *) inView appearRightToLeftofView: (UIView *) view during: (void (^)(void))during after: (void (^)(void))after {
++(void) animate: (NSArray *) newViews
+withPercentages: (NSArray *) percentages
+         inView: (UIView *) inView
+    anchoringTo: (UIView *) anchor
+  withAttribute: (NSInteger) anchorAttribute
+   withConstant: (CGFloat) anchorConstant
+appearRightToLeftofView: (UIView *) view
+         during: (void (^)(void))during
+          after: (void (^)(void))after {
     
     NSUInteger i=0;
     for(UIView * newView in newViews) {
@@ -60,7 +58,7 @@
         }
         during();
         
-        ADD_CONSTRAINT(inView, view, NSLayoutAttributeTrailing, NSLayoutRelationEqual, inView, NSLayoutAttributeLeading, 1.f, 0);
+        ADD_CONSTRAINT(inView, view, NSLayoutAttributeTrailing, NSLayoutRelationEqual, anchor, anchorAttribute, 1.f, anchorConstant);
         ADD_CONSTRAINT(inView, view, NSLayoutAttributeWidth, NSLayoutRelationEqual, inView, NSLayoutAttributeWidth, 1.f, 0);
         
         [inView layoutIfNeeded];
@@ -70,28 +68,27 @@
                                                                       constraint.firstAttribute == NSLayoutAttributeBottom ||
                                                                       constraint.firstAttribute == NSLayoutAttributeTop)) [inView removeConstraint:constraint];
         }
-        ADD_CONSTRAINT(inView, [newViews objectAtIndex:0], NSLayoutAttributeLeading, NSLayoutRelationEqual, inView, NSLayoutAttributeLeading, 1.f, 0);
+        ADD_CONSTRAINT(inView, [newViews objectAtIndex:0], NSLayoutAttributeLeading, NSLayoutRelationEqual, anchor, anchorAttribute, 1.f, anchorConstant);
         
         after();
     }];
 }
 
-//new view will slide in from the left to occupy entire Space
-+(void) animate: (UIView *) newView inView: (UIView *) inView appearLefttoRightofView: (UIView *) view during: (void (^)(void))during after: (void (^)(void))after {
-    
-    [POSAnimations animate:[NSArray arrayWithObject:newView]
-           withPercentages:[NSArray arrayWithObject:[NSNumber numberWithFloat:1.f]]
-                    inView:inView
-   appearLefttoRightofView:view
-                    during:during
-                     after:after];
-}
 
 /*
+ * new view will slide in from the left to occupy entire Space
  * newViews : NSArray[UIView *]
  * percentages : NSArray[NSNumber *]
  */
-+(void) animate: (NSArray *) newViews withPercentages: (NSArray *) percentages inView: (UIView *) inView appearLefttoRightofView: (UIView *) view during: (void (^)(void))during after: (void (^)(void))after {
++(void) animate: (NSArray *) newViews
+withPercentages: (NSArray *) percentages
+         inView: (UIView *) inView
+    anchoringTo: (UIView *) anchor
+  withAttribute: (NSInteger) anchorAttribute
+   withConstant: (CGFloat) anchorConstant
+appearLefttoRightofView: (UIView *) view
+         during: (void (^)(void))during
+          after: (void (^)(void))after {
     
     NSUInteger i=0;
     for(UIView * newView in newViews) {
@@ -122,7 +119,7 @@
         }
         during();
         
-        ADD_CONSTRAINT(inView, view, NSLayoutAttributeLeading, NSLayoutRelationEqual, inView, NSLayoutAttributeTrailing, 1.f, 0);
+        ADD_CONSTRAINT(inView, view, NSLayoutAttributeLeading, NSLayoutRelationEqual, anchor, anchorAttribute, 1.f, anchorConstant);
         ADD_CONSTRAINT(inView, view, NSLayoutAttributeWidth, NSLayoutRelationEqual, inView, NSLayoutAttributeWidth, 1.f, 0);
         
         [inView layoutIfNeeded];
@@ -132,7 +129,7 @@
                                                                       constraint.firstAttribute == NSLayoutAttributeBottom ||
                                                                       constraint.firstAttribute == NSLayoutAttributeTop)) [inView removeConstraint:constraint];
         }
-        ADD_CONSTRAINT(inView, [newViews objectAtIndex:0], NSLayoutAttributeTrailing, NSLayoutRelationEqual, inView, NSLayoutAttributeTrailing, 1.f, 0);
+        ADD_CONSTRAINT(inView, [newViews objectAtIndex:0], NSLayoutAttributeTrailing, NSLayoutRelationEqual, anchor, anchorAttribute, 1.f, anchorConstant);
         
         after();
     }];

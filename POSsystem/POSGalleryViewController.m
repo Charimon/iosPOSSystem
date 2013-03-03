@@ -16,6 +16,8 @@
 @implementation POSGalleryViewController
 
 #pragma mark - setters/getters
+@synthesize coordinatorDelegate = _coordinatorDelegate;
+
 -(UIImageView *) imageView {
     if(_imageView) return _imageView;
     _imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sofa1"]];

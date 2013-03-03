@@ -8,14 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "POSCoordinatorDelegate.h"
+#import "POSFragmentDelegate.h"
 
-@interface POSProductViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface POSProductViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, POSFragmentDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
 //type: NSMutableArray[NSMutableArray[NSString *]]
 @property (strong, nonatomic) NSMutableArray *data;
-
-@property (weak, nonatomic) id<POSCoordinatorDelegate> coordinatorDelegate;
 
 @end

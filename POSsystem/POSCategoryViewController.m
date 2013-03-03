@@ -17,7 +17,9 @@
 @implementation POSCategoryViewController
 
 #pragma mark - getters/setters
-@synthesize collectionView = _collectionView;
+@synthesize coordinatorDelegate = _coordinatorDelegate;
+
+
 - (UICollectionView *) collectionView {
     if(_collectionView) return _collectionView;
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -48,7 +50,6 @@
     ADD_CONSTRAINT(self.view, self.collectionView, NSLayoutAttributeTop, NSLayoutRelationEqual, self.view, NSLayoutAttributeTop, 1.f, 0.f);
     ADD_CONSTRAINT(self.view, self.collectionView, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, 0.f);
     ADD_CONSTRAINT(self.view, self.collectionView, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0.f);
-    self.view.backgroundColor = [UIColor redColor];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {

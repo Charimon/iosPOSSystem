@@ -15,6 +15,7 @@
 #import "POSCartViewController.h"
 #import "POSConstants.h"
 #import "POSAnimations.h"
+#import "POSFragmentDelegate.h"
 
 @interface POSViewController ()
 @property (strong, nonatomic) POSCategoryViewController * categoryViewController;
@@ -43,8 +44,7 @@
 #pragma mark - setters/getters
 -(NSDictionary *) nilifyDictionary {
     if(_nilifyDictionary) return _nilifyDictionary;
-    _nilifyDictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"categoryViewController",NSStringFromClass([POSCategoryViewController class]), @"subCategoryViewController", NSStringFromClass([POSSubCategoryViewController class]), @"productViewController", NSStringFromClass([POSProductViewController class]), @"productDetailViewController", NSStringFromClass([POSProductDetailViewController class]), @"cartViewController", NSStringFromClass([POSCartViewController class]),
-                         nil];
+    _nilifyDictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"categoryViewController",NSStringFromClass([POSCategoryViewController class]), @"subCategoryViewController", NSStringFromClass([POSSubCategoryViewController class]), @"productViewController", NSStringFromClass([POSProductViewController class]), @"productDetailViewController", NSStringFromClass([POSProductDetailViewController class]), @"cartViewController", NSStringFromClass([POSCartViewController class]), nil];
     return _nilifyDictionary;
 }
 
@@ -76,18 +76,8 @@
     
     controller.view.translatesAutoresizingMaskIntoConstraints = NO;
     [self setValue:controller forKey:[self.nilifyDictionary objectForKey:NSStringFromClass(classToSetup)]];
+    ((id<POSFragmentDelegate>)controller).coordinatorDelegate = self;
     
-    if([controller isKindOfClass:[POSCategoryViewController class]]){
-        self.categoryViewController.coordinatorDelegate = self;
-    } else if([controller isKindOfClass:[POSSubCategoryViewController class]]) {
-        self.subCategoryViewController.coordinatorDelegate = self;
-    } else if ([controller isKindOfClass:[POSProductViewController class]]) {
-        self.productViewController.coordinatorDelegate = self;
-    } else if ([controller isKindOfClass:[POSProductDetailViewController class]]) {
-        self.productDetailViewController.coordinatorDelegate = self;
-    } else if ([controller isKindOfClass:[POSCartViewController class]]) {
-        self.cartViewController.coordinatorDelegate = self;
-    }
     return controller;
 }
 

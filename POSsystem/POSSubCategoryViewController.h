@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "POSCoordinatorDelegate.h"
+#import "POSFragmentDelegate.h"
 
-@interface POSSubCategoryViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface POSSubCategoryViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, POSFragmentDelegate>
 
 @property (strong, nonatomic) UICollectionView *collectionView;
 
 
 //type: NSMutableArray[NSMutableArray[NSString *]]
 @property (strong, nonatomic) NSMutableArray *data;
-
-@property (weak, nonatomic) id<POSCoordinatorDelegate> coordinatorDelegate;@end
+@end

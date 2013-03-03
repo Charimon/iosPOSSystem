@@ -17,6 +17,8 @@
 @implementation POSProductViewController
 
 #pragma mark - getters/setters
+@synthesize coordinatorDelegate = _coordinatorDelegate;
+
 -(NSMutableArray *) data {
     _data = [[NSMutableArray alloc] init];
     [_data addObject:[[NSMutableArray alloc] initWithObjects:@"Sofa 1", @"Sofa 2", @"Sofa 3", @"Sofa 4", @"Sofa 5", @"Sofa 6", nil]];

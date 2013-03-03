@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "POSCoordinatorDelegate.h"
+#import "POSFragmentDelegate.h"
 
-@interface POSGalleryViewController : UIViewController
+@interface POSGalleryViewController : UIViewController<POSFragmentDelegate>
 
 
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UIButton *closeButton;
-
-@property (weak, nonatomic) id<POSCoordinatorDelegate> coordinatorDelegate;
 
 @end

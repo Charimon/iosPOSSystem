@@ -112,6 +112,7 @@
 		33564D1D16E0FB5B0025D8D8 /* POSAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAnimations.m; sourceTree = "<group>"; };
 		33564D1F16E19D9E0025D8D8 /* POSCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSCartViewController.h; sourceTree = "<group>"; };
 		33564D2016E19D9F0025D8D8 /* POSCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSCartViewController.m; sourceTree = "<group>"; };
+		3378721716E33FC3001C6E53 /* POSFragmentDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = POSFragmentDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +245,7 @@
 				33564CA016DF17790025D8D8 /* POSAppDelegate.h */,
 				33564CA116DF17790025D8D8 /* POSAppDelegate.m */,
 				33564CD116DF17B20025D8D8 /* POSCoordinatorDelegate.h */,
+				3378721716E33FC3001C6E53 /* POSFragmentDelegate.h */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";

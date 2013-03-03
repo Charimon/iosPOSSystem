@@ -17,6 +17,8 @@
 @implementation POSProductDetailViewController
 
 #pragma mark - setters/getters
+@synthesize coordinatorDelegate = _coordinatorDelegate;
+
 -(UIImageView *) imageView {
     if(_imageView) return _imageView;
     

@@ -16,6 +16,7 @@
 #import "POSConstants.h"
 #import "POSAnimations.h"
 #import "POSFragmentDelegate.h"
+#import "POSTableViewCell.h"
 
 @interface POSViewController ()
 @property (strong, nonatomic) POSCategoryViewController * categoryViewController;
@@ -225,9 +226,8 @@
 }
 
 #pragma mark - POSCoordinatorDelegate
--(void) categoryClicked {
+-(void) categoryClicked:(NSString *) title {
     [self setupViewController:[POSSubCategoryViewController class]];
-    self.subCategoryViewController.title = @"Sub Categories";
     CGFloat width = 1.f;
     UIView *anchor = self.view;
     NSInteger anchorPoint = NSLayoutAttributeLeading;
@@ -247,17 +247,15 @@
     } after:^{
         ADD_CONSTRAINT(self.view, self.subCategoryViewController.view, NSLayoutAttributeTop, NSLayoutRelationEqual, self.navigationBar, NSLayoutAttributeBottom, 1.f, 0);
         ADD_CONSTRAINT(self.view, self.subCategoryViewController.view, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0);
-        [self.navigationBar pushControllerPostAnimation:self.subCategoryViewController.title];
+        [self.navigationBar pushControllerPostAnimation:title];
         [self nilifyViewController:self.categoryViewController];
         [self addToControllerStack:self.subCategoryViewController];
     }];
 }
 
--(void) subCategoryClicked {
+-(void) subCategoryClicked:(NSString *) title {
     [self setupViewController:[POSProductViewController class]];
     [self setupViewController:[POSProductDetailViewController class]];
-    self.productDetailViewController.title = @"product detail";
-    self.productViewController.title = @"Products";
     CGFloat width = .75f;
     UIView *anchor = self.view;
     NSInteger anchorPoint = NSLayoutAttributeLeading;
@@ -278,7 +276,7 @@
         ADD_CONSTRAINT(self.view, self.productViewController.view, NSLayoutAttributeTop, NSLayoutRelationEqual, self.navigationBar, NSLayoutAttributeBottom, 1.f, 0);
         ADD_CONSTRAINT(self.view, self.productViewController.view, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0);
         
-        [self.navigationBar pushControllerPostAnimation:self.productViewController.title];
+        [self.navigationBar pushControllerPostAnimation:title];
         
         [self nilifyViewController:self.subCategoryViewController];
         
@@ -417,15 +415,35 @@
                               delay:0.f
                             options:UIViewAnimationOptionTransitionNone | UIViewAnimationOptionCurveEaseInOut
                          animations:^{
+                             UIView *shiftingView;
+                             CGFloat shiftingViewWidth;
                              for(NSLayoutConstraint *constraint in self.view.constraints){
                                  if(constraint.firstItem == self.cartViewController.view)
                                      [self.view removeConstraint:constraint];
+                                 if(constraint.firstItem == self.categoryViewController.view && constraint.firstAttribute == NSLayoutAttributeWidth){
+                                     shiftingView = self.categoryViewController.view;
+                                     shiftingViewWidth = constraint.multiplier;
+                                     [self.view removeConstraint:constraint];
+                                 } else if (constraint.firstItem == self.subCategoryViewController.view && constraint.firstAttribute == NSLayoutAttributeWidth) {
+                                     shiftingView = self.subCategoryViewController.view;
+                                     shiftingViewWidth = constraint.multiplier;
+                                     [self.view removeConstraint:constraint];
+                                 } else if (constraint.firstItem == self.productDetailViewController.view && constraint.firstAttribute == NSLayoutAttributeWidth) {
+                                     shiftingView = self.productDetailViewController.view;
+                                     shiftingViewWidth = constraint.multiplier;
+                                     [self.view removeConstraint:constraint];
+                                 }
                              }
+                             
          
                              ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeTop, NSLayoutRelationEqual, self.navigationBar, NSLayoutAttributeBottom, 1.f, 0.f);
                              ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, 0.f);
                              ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, .25f, 0.f);
                              ADD_CONSTRAINT(self.view, self.cartViewController.view, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.view, NSLayoutAttributeBottom, 1.f, 0.f);
+                             ADD_CONSTRAINT(self.view, shiftingView, NSLayoutAttributeWidth, NSLayoutRelationEqual, self.view, NSLayoutAttributeWidth, shiftingViewWidth-.25f, 0.f);
+                             if(self.categoryViewController) [self.categoryViewController.collectionView.collectionViewLayout invalidateLayout];
+                             if(self.subCategoryViewController) [self.subCategoryViewController.collectionView.collectionViewLayout invalidateLayout];
+                             
                              [self.view layoutIfNeeded];
 
                          } completion:^(BOOL finished){}];
@@ -437,8 +455,12 @@
                              UIView *boundView;
                              CGFloat boundViewWidthMultiplier;
                              for(NSLayoutConstraint *constraint in self.view.constraints){
-                                 if(constraint.firstItem == self.cartViewController.view) [self.view removeConstraint:constraint];
-                                 if(constraint.secondItem == self.cartViewController.view) boundView = constraint.firstItem;
+                                 if(constraint.firstItem == self.cartViewController.view){
+                                     [self.view removeConstraint:constraint];
+                                 }
+                                 if(constraint.secondItem == self.cartViewController.view){
+                                     
+                                 }boundView = constraint.firstItem;
                              }
                              for(NSLayoutConstraint *constraint in self.view.constraints){
                                  if(constraint.firstItem == boundView && constraint.firstAttribute == NSLayoutAttributeWidth) {
@@ -457,6 +479,8 @@
                              [self.view layoutIfNeeded];
                          } completion:^(BOOL finished){
                              [self nilifyViewController:self.cartViewController];
+                             if(self.categoryViewController) [self.categoryViewController.collectionView.collectionViewLayout invalidateLayout];
+                             if(self.subCategoryViewController) [self.subCategoryViewController.collectionView.collectionViewLayout invalidateLayout];
                          }];
     }
 }

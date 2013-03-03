@@ -75,7 +75,8 @@
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.coordinatorDelegate subCategoryClicked];
+    POSCollectionViewCell * cell = (POSCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [self.coordinatorDelegate subCategoryClicked: cell.nameLabel.text];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout

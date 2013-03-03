@@ -10,8 +10,8 @@
 
 @protocol POSCoordinatorDelegate <NSObject>
 
--(void) categoryClicked;
--(void) subCategoryClicked;
+-(void) categoryClicked:(NSString *) title;
+-(void) subCategoryClicked:(NSString *) title;
 -(void) detailImageClicked: (UIButton *) button;
 -(void) detailImageCloseClicked: (UIButton *) button;
 

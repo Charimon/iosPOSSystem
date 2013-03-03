@@ -9,6 +9,7 @@
 #import "POSProductViewController.h"
 #import "POSTableViewCell.h"
 #import "POSConstants.h"
+#import "POSProduct.h"
 
 @interface POSProductViewController ()
 @property (strong, nonatomic) UIView *border;
@@ -76,9 +77,10 @@
     POSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLE_VIEW_CELL_INDENTIFIER forIndexPath:indexPath];
     if(cell == nil) cell = [[POSTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TABLE_VIEW_CELL_INDENTIFIER];
     
-    cell.titleLabel.text = [[self.data objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    cell.descriptionLabel.text = @"test";
-    
+    POSProduct *p = [[POSProduct alloc] init];
+    p.title = [[self.data objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    p.description = @"test";
+    [cell setupWithProduct:p];
     return cell;
 }
 

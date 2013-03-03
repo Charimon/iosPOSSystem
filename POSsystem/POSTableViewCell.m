@@ -81,8 +81,11 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
+}
 
-    // Configure the view for the selected state
+-(void) setupWithProduct: (POSProduct *) product {
+    self.titleLabel.text = product.title;
+    self.descriptionLabel.text = product.description;
 }
 
 @end

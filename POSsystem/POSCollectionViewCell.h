@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "POSProductGroup.h"
 
 @interface POSCollectionViewCell : UICollectionViewCell
 
 @property (strong, nonatomic) UILabel *nameLabel;
 @property (strong, nonatomic) UIView *nameLabelBackground;
 @property (strong, nonatomic) UIImageView *imageView;
+
+-(void) setupWithProduct: (POSProductGroup *) productGroup;
 
 @end

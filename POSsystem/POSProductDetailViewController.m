@@ -8,6 +8,7 @@
 
 #import "POSProductDetailViewController.h"
 #import "POSConstants.h"
+#import "POSProduct.h"
 
 @interface POSProductDetailViewController ()
 @property (strong, nonatomic) UIButton *imageViewButton;
@@ -48,7 +49,6 @@
     _titleLabel.textColor = [UIColor blackColor];
     _titleLabel.font = [UIFont fontWithName:@"Lato-Bold" size:22.f];
     _titleLabel.textAlignment = NSTextAlignmentLeft;
-    _titleLabel.text = @"TEST";
     
     _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     return _titleLabel;
@@ -62,7 +62,6 @@
     _descriptionLabel.font = [UIFont fontWithName:@"Lato-Bold" size:18.f];
     _descriptionLabel.textAlignment = NSTextAlignmentLeft;
     
-    _descriptionLabel.text = @"DESCRIPTION goes here";
     _descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
     return _descriptionLabel;
 }
@@ -93,6 +92,13 @@
     ADD_CONSTRAINT(self.view, self.descriptionLabel, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.titleLabel, NSLayoutAttributeLeading, 1.f, 0.f);
     ADD_CONSTRAINT(self.view, self.descriptionLabel, NSLayoutAttributeTop, NSLayoutRelationEqual, self.titleLabel, NSLayoutAttributeBottom, 1.f, 10.f);
     ADD_CONSTRAINT(self.view, self.descriptionLabel, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.titleLabel, NSLayoutAttributeTrailing, 1.f, 0.f);
+    
+    POSProduct *p = [[POSProduct alloc] init];
+    p.title = @"TEST";
+    p.description = @"DESCRIPTION goes here";
+    
+    self.titleLabel.text = p.title;
+    self.descriptionLabel.text = p.description;
 }
 
 @end

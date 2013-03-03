@@ -10,6 +10,7 @@
 #import "POSTableViewCell.h"
 #import "POSConstants.h"
 #import <QuartzCore/QuartzCore.h>
+#import "POSProduct.h"
 
 @interface POSCartViewController ()
 @property (strong, nonatomic) UIView *border;
@@ -52,7 +53,7 @@
     return _data;
 }
 
-- (UITableView *) tableView {
+-(UITableView *) tableView {
     if(_tableView) return _tableView;
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _tableView.dataSource = self;
@@ -64,14 +65,38 @@
     return _tableView;
 }
 
+-(UILabel *) priceLabelTitle {
+    if(_priceLabelTitle) return _priceLabelTitle;
+    _priceLabelTitle = [[UILabel alloc] initWithFrame:CGRectZero];
+    _priceLabelTitle.text = @"Price";
+    _priceLabelTitle.backgroundColor = [UIColor clearColor];
+    _priceLabelTitle.textColor = [UIColor blackColor];
+    
+    _priceLabelTitle.translatesAutoresizingMaskIntoConstraints = NO;
+    return _priceLabelTitle;
+}
+
+-(UILabel *) priceLabel {
+    if(_priceLabel) return _priceLabel;
+    _priceLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _priceLabel.backgroundColor = [UIColor clearColor];
+    _priceLabel.textColor = [UIColor blackColor];
+    _priceLabel.textAlignment = NSTextAlignmentLeft;
+    
+    _priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    return _priceLabel;
+}
+
 #pragma mark - view methods
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.view addSubview:self.tableView];
-    [self.view addSubview:self.border];
+    [self.view addSubview: self.tableView];
+    [self.view addSubview: self.border];
     [self.view addSubview: self.footer];
     [self.view addSubview: self.footerBorder];
+    [self.view addSubview: self.priceLabelTitle];
+    [self.view addSubview: self.priceLabel];
     
     ADD_CONSTRAINT(self.view, self.tableView, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.view, NSLayoutAttributeLeading, 1.f, 1.f);
     ADD_CONSTRAINT(self.view, self.tableView, NSLayoutAttributeTop, NSLayoutRelationEqual, self.view, NSLayoutAttributeTop, 1.f, 0.f);
@@ -93,6 +118,15 @@
     ADD_CONSTRAINT(self.view, self.footerBorder, NSLayoutAttributeHeight, NSLayoutRelationEqual, self.footer, NSLayoutAttributeHeight, 0.f, 1.f);
     ADD_CONSTRAINT(self.view, self.footerBorder, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.footer, NSLayoutAttributeTop, 1.f, 0.f);
     
+    ADD_CONSTRAINT(self.view, self.priceLabelTitle, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.footer, NSLayoutAttributeLeading, 1.f, 10.f);
+    ADD_CONSTRAINT(self.view, self.priceLabelTitle, NSLayoutAttributeTop, NSLayoutRelationEqual, self.footer, NSLayoutAttributeTop, 1.f, 0.f);
+    ADD_CONSTRAINT(self.view, self.priceLabelTitle, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.footer, NSLayoutAttributeBottom, 1.f, 0.f);
+    
+    ADD_CONSTRAINT(self.view, self.priceLabel, NSLayoutAttributeLeading, NSLayoutRelationEqual, self.priceLabelTitle, NSLayoutAttributeTrailing, 1.f, 10.f);
+    ADD_CONSTRAINT(self.view, self.priceLabel, NSLayoutAttributeTrailing, NSLayoutRelationEqual, self.view, NSLayoutAttributeTrailing, 1.f, -10.f);
+    ADD_CONSTRAINT(self.view, self.priceLabel, NSLayoutAttributeTop, NSLayoutRelationEqual, self.footer, NSLayoutAttributeTop, 1.f, 0.f);
+    ADD_CONSTRAINT(self.view, self.priceLabel, NSLayoutAttributeBottom, NSLayoutRelationEqual, self.footer, NSLayoutAttributeBottom, 1.f, 0.f);
+    
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
@@ -109,9 +143,10 @@
     POSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLE_VIEW_CELL_INDENTIFIER forIndexPath:indexPath];
     if(cell == nil) cell = [[POSTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TABLE_VIEW_CELL_INDENTIFIER];
     
-    cell.titleLabel.text = [[self.data objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    cell.descriptionLabel.text = @"test";
-    
+    POSProduct *p = [[POSProduct alloc] init];
+    p.title = [[self.data objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    p.description = @"test";
+    [cell setupWithProduct:p];
     return cell;
 }
 

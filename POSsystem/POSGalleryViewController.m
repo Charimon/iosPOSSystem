@@ -8,6 +8,7 @@
 
 #import "POSGalleryViewController.h"
 #import "POSConstants.h"
+#import "POSProduct.h"
 
 @interface POSGalleryViewController ()
 

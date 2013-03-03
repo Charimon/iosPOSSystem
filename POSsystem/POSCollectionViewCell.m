@@ -12,7 +12,6 @@
 @implementation POSCollectionViewCell
 
 #pragma mark - getters/setters
-@synthesize nameLabel = _nameLabel;
 - (UILabel *) nameLabel {
     if(_nameLabel) return _nameLabel;
     _nameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -24,7 +23,7 @@
     _nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
     return _nameLabel;
 }
-@synthesize nameLabelBackground = _nameLabelBackground;
+
 - (UIView *) nameLabelBackground {
     if(_nameLabelBackground) return _nameLabelBackground;
     _nameLabelBackground = [[UIView alloc] initWithFrame:CGRectZero];
@@ -34,8 +33,6 @@
     return _nameLabelBackground;
 }
 
-
-@synthesize imageView = _imageView;
 - (UIImageView *) imageView {
     if(_imageView) return _imageView;
     
@@ -49,8 +46,7 @@
 }
 
 #pragma mark - view methods
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self.contentView addSubview:self.imageView];
@@ -73,6 +69,10 @@
         self.backgroundColor = [UIColor redColor];
     }
     return self;
+}
+
+-(void) setupWithProduct: (POSProductGroup *) productGroup {
+    self.nameLabel.text = productGroup.title;
 }
 
 @end

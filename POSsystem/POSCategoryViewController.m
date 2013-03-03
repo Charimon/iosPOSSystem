@@ -9,6 +9,7 @@
 #import "POSCategoryViewController.h"
 #import "POSCollectionViewCell.h"
 #import "POSConstants.h"
+#import "POSProductGroup.h"
 
 @interface POSCategoryViewController ()
 
@@ -68,8 +69,10 @@
     if(cell == nil) cell = [[POSCollectionViewCell alloc] init];
     
     NSString *dataValue = [[self.data objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    POSProductGroup *p = [[POSProductGroup alloc] init];
+    p.title = dataValue;
     
-    cell.nameLabel.text = dataValue;
+    [cell setupWithProduct:p];
     return cell;
 }
 

@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "POSProduct.h"
 
 @interface POSTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) UIImageView *thumbnailImageView;
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *descriptionLabel;
+
+-(void) setupWithProduct: (POSProduct *) product;
 
 @end

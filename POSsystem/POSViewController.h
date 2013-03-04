@@ -11,5 +11,5 @@
 #import "POSNavigationBar.h"
 
 @interface POSViewController : UIViewController <POSCoordinatorDelegate, POSNavigationBarDelegate>
-
+-(void) nilifyViewController: (UIViewController *) viewController;
 @end

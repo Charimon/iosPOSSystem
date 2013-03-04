@@ -15,4 +15,6 @@
 -(void) detailImageClicked: (UIButton *) button;
 -(void) detailImageCloseClicked: (UIButton *) button;
 
+-(void) nilifyViewController: (UIViewController *) viewController;
+
 @end

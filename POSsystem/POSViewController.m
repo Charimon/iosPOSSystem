@@ -34,7 +34,6 @@
 @property (nonatomic, strong) NSDictionary* nilifyDictionary;
 
 -(UIViewController *) setupViewController: (Class) classToSetup;
--(void) nilifyViewController: (UIViewController *) viewController;
 
 -(void) handlePanFrom: (UIPanGestureRecognizer *)recognizer;
 
@@ -45,7 +44,7 @@
 #pragma mark - setters/getters
 -(NSDictionary *) nilifyDictionary {
     if(_nilifyDictionary) return _nilifyDictionary;
-    _nilifyDictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"categoryViewController",NSStringFromClass([POSCategoryViewController class]), @"subCategoryViewController", NSStringFromClass([POSSubCategoryViewController class]), @"productViewController", NSStringFromClass([POSProductViewController class]), @"productDetailViewController", NSStringFromClass([POSProductDetailViewController class]), @"cartViewController", NSStringFromClass([POSCartViewController class]), nil];
+    _nilifyDictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"categoryViewController",NSStringFromClass([POSCategoryViewController class]), @"subCategoryViewController", NSStringFromClass([POSSubCategoryViewController class]), @"productViewController", NSStringFromClass([POSProductViewController class]), @"productDetailViewController", NSStringFromClass([POSProductDetailViewController class]), @"cartViewController", NSStringFromClass([POSCartViewController class]),@"galleryViewController", NSStringFromClass([POSGalleryViewController class]), nil];
     return _nilifyDictionary;
 }
 
